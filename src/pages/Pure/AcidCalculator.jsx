@@ -1,6 +1,5 @@
-import { useState } from "react"
-import Input from "../components/Input"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
+import Input from "../../components/Input"
 
 export default function AcidCalculator(){
 
@@ -47,31 +46,24 @@ export default function AcidCalculator(){
     return(
         <div className="calc-container">
 
-            <div className="calc-top">
-                <div className="flex flex-col gap-6 ">
-                    <h1 className="font-bold text-xl">
-                        Optimum Şıra Asitliği Hesaplayıcı
-                    </h1>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem repellendus vero ad quas dolorum numquam.
-                    </p>
-                </div>
-
-                <div className="w-[150px] h-[150px] ">
+            <div className="calc-header">
+                <div className="calc-icon">
                     <img src="/icons/ph.png" alt="" />
                 </div>
 
+                <h1 className="calc-title">
+                    Optimum Şıra Asitliği Hesaplayıcı
+                </h1>
             </div>
             
             <div className="calc-bottom">
-                <div className="calc-left">
-
+                <div className="calc-inputs">
                     <Input title="Mayşe Hacmi" unit="l" value={volume} setter={setVolume} />
                     <Input title="Başlangıç pH Değeri" unit="ph" value={pH2} setter={setPH2} />
                     <Input title="Gerekli pH Değeri" unit="ph" value={pH1} setter={setPH1} />
                 </div>
 
-                <div className="calc-right">
+                <div className="calc-result">
                     {!error && ("Asit Kütlesi : "  + result + "g")}
                     {error && result}
                 </div>

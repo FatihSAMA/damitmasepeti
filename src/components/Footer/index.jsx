@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
+import Logo from "../Logo";
 
 export default function Footer(){
     return(
         <footer className="bg-background-dark text-white py-8">
             <div className="xcontainer flex justify-between flex-wrap gap-8">
                 <div className="flex flex-col gap-4">
-                    <Link to="/" className="w-[250px] flex">
-                        <img src="/logo.png" alt="Logo" className="block w-full object-cover" />
-                    </Link>
+                    <Logo />
 
                     <p className="max-w-[400px] text-justify text-sm">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo harum officia voluptates, voluptatem nesciunt tenetur praesentium inventore magnam, repellat sapiente ea. Id officiis quam aliquam natus sed sint quos.
@@ -30,7 +29,7 @@ export default function Footer(){
             </div>
             <hr className="xcontainer rounded-full border-zinc-500 my-6" />
 
-            <div className="flex items-center justify-center flex-wrap">
+            <div className="flex items-center justify-center flex-wrap text-sm">
                 © 2024 Damıtma Sepeti - 
                 <Link to="https://fatihkabul.vercel.app" target="_blank" className="pl-1 text-secondary/80 hover:text-secondary transition-colors">
                     by Fatih Kabul

@@ -1,10 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
-import AcidCalculator from "./pages/AcidCalculator";
 import CalculatorLayout from "./layouts/CalculatorLayout";
 import NotFound from "./pages/NotFound";
-import Calc2 from "./pages/Calc2";
+
+import AcidCalculator from "./pages/Pure/AcidCalculator";
+import Sugar from "./pages/Pure/Sugar";
+import AlcholFix from "./pages/Seyreltme/AlcholFix";
+import Grain from "./pages/Pure/Grain";
+import SugarCorrection from "./pages/Pure/SugarCorrection";
+import Refraktometer from "./pages/Pure/Refraktometer";
+import FermentationAlchol from "./pages/Pure/FermentationAlchol";
+import GlucoseFructose from "./pages/Pure/GlucoseFructose";
+
 
 
 const router = createBrowserRouter([{
@@ -26,10 +34,27 @@ const router = createBrowserRouter([{
                 },
                 {
                     path: "2",
-                    element: <Calc2 />
+                    element: <Sugar />
+                },
+                {
+                    path: "3",
+                    element: <FermentationAlchol />
+                },
+                {
+                    path: "4",
+                    element: <Refraktometer />
+                },
+                {
+                    path: "5",
+                    element: <GlucoseFructose />
+                },
+                
+                {
+                    path: "23",
+                    element: <AlcholFix />
                 },
             ]
-        },
+        }
     ]
 }])
 

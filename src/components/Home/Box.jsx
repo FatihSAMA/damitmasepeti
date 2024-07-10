@@ -3,7 +3,7 @@ import { FaLongArrowAltRight } from "react-icons/fa"
 
 export default function Box({title, desc, link, icon}){
     return(
-        <div className="flex flex-col gap-4 items-center w-[285px] border-2 border-solid border-zinc-200 rounded-lg p-6 text-center hover:border-zinc-300 transition-all ">
+        <div className="flex flex-col gap-4 items-center justify-between w-[285px] border-2 border-solid border-zinc-200 rounded-lg p-6 text-center hover:border-zinc-300 transition-all ">
             <div className="w-[54px]">
                 <img src={icon} alt="" />
             </div>

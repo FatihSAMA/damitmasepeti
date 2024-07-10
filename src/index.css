@@ -40,24 +40,32 @@ input[type=number] {
 
     /* Calculator Page */
     .calc-container{
-      @apply flex flex-col items-center justify-between gap-12 border-2 border-secondary/30 my-12 rounded-xl p-8 xcontainer
+      @apply flex flex-col items-center justify-between gap-4 md:gap-12 border-2 border-secondary/30 my-12 rounded-xl p-8 w-full xcontainer
     }
 
-    .calc-top{
-      @apply bg-secondary w-full p-8 rounded-lg text-white flex flex-col-reverse md:flex-row items-center gap-12 overflow-hidden
+    .calc-header{
+      @apply bg-secondary w-full p-2 rounded-lg text-white flex flex-col md:flex-row items-center justify-center gap-2 overflow-hidden text-center
     }
 
-    .calc-left{
-      @apply md:flex-1 w-full flex flex-col items-center justify-center gap-4
+    .calc-icon{
+      @apply w-[80px] h-[80px] 
     }
-
-    .calc-right{
-      @apply md:flex-1 flex items-center justify-center text-xl md:h-full drop-shadow-sm text-center px-6 py-8 rounded-lg font-bold border-secondary border w-full
+    .calc-title{
+      @apply font-bold text-xl
     }
 
     .calc-bottom{
-      @apply flex max-md:flex-col justify-center items-center w-full h-full gap-12
+      @apply flex max-md:flex-col items-start w-full h-full gap-12
     }
+
+    .calc-inputs{
+      @apply md:flex-1 w-full flex flex-col items-center justify-center gap-5
+    }
+
+    .calc-result{
+      @apply md:flex-1 text-lg md:h-full text-center px-6 py-8 rounded-lg border-secondary/50 border w-full
+    }
+
     /* Calculator Page End */
 
 }

@@ -1,7 +1,12 @@
 export default function Input({title, unit, setter, value}){
     return(
         <div className="flex flex-col gap-1 w-full">
-            <label className="label">{title}, <b>{unit}</b></label>
+
+            {
+                title && (
+                    <label>{title}, <b>{unit}</b></label>
+                )
+            }
             
             <div className="relative">
                 
