@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Toggle from "../../components/Toggle";
 
-export default function Reflu() {
+export default function RefluxRatioCalculator() {
   const [alcoholStrength, setAlcoholStrength] = useState(95); // Çıkış alkol derecesi
   const [power, setPower] = useState(2000); // Verilen güç
   const [flowRate, setFlowRate] = useState(2); // Akış hızı
@@ -17,12 +17,15 @@ export default function Reflu() {
     const W = power;
     const V = flowRate;
     const P = useHeatLoss ? parseFloat(heatLossPercentage) : 0;
-
+    const T = useAlcoholTemp ? alcoholTemp : 20; // Varsayılan sıcaklık 20 °C
+  
+    // Formülü güncelleyin (T'yi nasıl dahil edeceğiniz hakkında bilgi vermelisiniz)
     const F0 = (((((1 - S) + (S / 0.789)) * (W / (((1 - S) * 2260) + (855 * S)))) * 60) * 10) / (V / 0.06) / 10;
     const F = F0 - (P * F0) / 100;
-
+  
     setRefluxRatio(F.toFixed(1));
   }, [alcoholStrength, power, flowRate, useHeatLoss, heatLossPercentage, useAlcoholTemp, alcoholTemp]);
+  
 
   return (
     <div className="calc-container">

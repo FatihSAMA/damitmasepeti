@@ -80,6 +80,42 @@ const calculators = [
                 icon: "/icons/boiling.png",
                 link: "/calc/12"
             },
+            // {
+            //     title: "SPN nozul hacmi hesaplayıcısı",
+            //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+            //     icon: "/icons/nozzle.png",
+            //     link: "/calc/13"
+            // },
+            {
+                title: "Yük Altında Kademe Değiştirici Ataşman Uzunluğu Hesaplayıcı",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/column.png",
+                link: "/calc/14"
+            },
+            {
+                title: "Ev damıtma kolonunun geri akış oranını hesaplamak için hesap makinesi",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/reflu.png",
+                link: "/calc/15"
+            },
+            {
+                title: "Damıtma Hesaplayıcı",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/distillation.png",
+                link: "/calc/16"
+            },
+            {
+                title: "Hedef Seçimi Hesaplayıcı",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/lab.png",
+                link: "/calc/17"
+            },
+            {
+                title: "Sıvı Çekme Hızı Hesaplayıcı",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/timer.png",
+                link: "/calc/18"
+            },
         ]
     },
 
@@ -92,9 +128,39 @@ const calculators = [
                 icon: "/icons/alkolfix.png",
                 link: "/calc/23"
             },
+            // {
+            //     title: "Alkol Yoğunluğu Hesaplayıcı",
+            //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+            //     icon: "/icons/alkolfix.png",
+            //     link: "/calc/24"
+            // },
+            {
+                title: "Alkol ve su karışımı hesaplayıcısı",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/alkolfix.png",
+                link: "/calc/25"
+            },
+            {
+                title: "Gerekli hacmi ve alkol içeriğini bulmak için farklı alkol içeriğine sahip sıvıları karıştırmaya yönelik hesap makinesi",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/alkolfix.png",
+                link: "/calc/26"
+            },
             
         ]
     },
+
+    {
+        title: "Diğer Hesaplayıcılar",
+        calcs: [
+            {
+                title: "Alkol Sayacı Okumalarının Düzeltilmesi",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/alkolfix.png",
+                link: "/calc/27"
+            },
+        ]
+    }
 
 ]
 

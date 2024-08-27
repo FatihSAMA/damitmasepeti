@@ -32,7 +32,7 @@ export default function Footer(){
             <div className="flex items-center justify-center flex-wrap text-sm">
                 © 2024 Damıtma Sepeti - 
                 <Link to="https://fatihkabul.vercel.app" target="_blank" className="pl-1 text-secondary/80 hover:text-secondary transition-colors">
-                    by Fatih Kabul
+                    Fatih Kabul
                 </Link>
             </div>
 
