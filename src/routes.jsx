@@ -29,6 +29,7 @@ import AlcoholMixing from "./pages/Seyreltme/AlcholMixing";
 import UnitConverter from "./pages/Other/UnitConverter";
 import SugarCorrection from "./pages/Pure/SugarCorrection";
 import MutlakAlkol from "./pages/Other/MutlakAlkol";
+import Anason from "./pages/Other/Anason";
 
 
 
@@ -149,7 +150,10 @@ const router = createBrowserRouter([{
                     path: "28",
                     element: <MutlakAlkol />
                 },
-
+                {
+                    path: "29",
+                    element: <Anason />
+                },
 
             ]
         }

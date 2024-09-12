@@ -221,6 +221,12 @@ const calculators = [
                 icon: "/icons/alchol6.png",
                 link: "/calc/28"
             },
+            {
+                title: "Anason Hesabı",
+                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                icon: "/icons/alchol6.png",
+                link: "/calc/29"
+            },
         ]
     }
 
