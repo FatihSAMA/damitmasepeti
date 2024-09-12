@@ -7,8 +7,6 @@ import NotFound from "./pages/NotFound";
 import AcidCalculator from "./pages/Pure/AcidCalculator";
 import Sugar from "./pages/Pure/Sugar";
 import AlcholFix from "./pages/Seyreltme/AlcholFix";
-// import Grain from "./pages/Pure/Grain";
-// import SugarCorrection from "./pages/Pure/SugarCorrection";
 import Refraktometer from "./pages/Pure/Refraktometer";
 import FermentationAlchol from "./pages/Pure/FermentationAlchol";
 import GlucoseFructose from "./pages/Pure/GlucoseFructose";
@@ -29,6 +27,8 @@ import AlcoholDensity from "./pages/Seyreltme/AlcholDensity";
 import AlcoholWater from "./pages/Seyreltme/AlcholWater";
 import AlcoholMixing from "./pages/Seyreltme/AlcholMixing";
 import UnitConverter from "./pages/Other/UnitConverter";
+import SugarCorrection from "./pages/Pure/SugarCorrection";
+import MutlakAlkol from "./pages/Other/MutlakAlkol";
 
 
 
@@ -106,7 +106,7 @@ const router = createBrowserRouter([{
                 },
                 {
                     path: "15",
-                    element: <Reflu /> //sorunlu
+                    element: <Reflu />
                 },
                 {
                     path: "16",
@@ -140,9 +140,14 @@ const router = createBrowserRouter([{
                     element: <AlcoholMixing />
                 },
 
+
                 {
                     path: "27",
                     element: <UnitConverter />
+                },
+                {
+                    path: "28",
+                    element: <MutlakAlkol />
                 },
 
 

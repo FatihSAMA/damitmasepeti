@@ -2,99 +2,95 @@ import { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Toggle from "../../components/Toggle";
 
-export default function Reflu() {
-  const [alcoholStrength, setAlcoholStrength] = useState(95); // Çıkış alkol derecesi
-  const [power, setPower] = useState(2000); // Verilen güç
-  const [flowRate, setFlowRate] = useState(2); // Akış hızı
-  const [heatLossPercentage, setHeatLossPercentage] = useState(10); // Isı kaybı yüzdesi
-  const [useHeatLoss, setUseHeatLoss] = useState(false); // Isı kaybı yüzdesi toggle
-  const [alcoholTemp, setAlcoholTemp] = useState(20); // Çıkış alkol sıcaklığı
-  const [useAlcoholTemp, setUseAlcoholTemp] = useState(false); // Çıkış alkol sıcaklığı toggle
-  const [refluxRatio, setRefluxRatio] = useState(0); // Reflüks oranı
+export default function HeatingTime() {
+  const [volume, setVolume] = useState(20);
+  const [power, setPower] = useState(2000);
+  const [initialTemp, setInitialTemp] = useState(25);
+  const [finalTemp, setFinalTemp] = useState(85);
+  const [efficiency, setEfficiency] = useState(100);
+  const [useEfficiency, setUseEfficiency] = useState(false);
+  const [heatingTime, setHeatingTime] = useState(0);
+
+  const calculateHeatingTime = () => {
+    const V = parseFloat(volume);
+    const W = parseFloat(power);
+    const T1 = parseFloat(initialTemp);
+    const T2 = parseFloat(finalTemp);
+    const E = useEfficiency ? parseFloat(efficiency) : 100;
+
+    const T = -(100 * ((V * 0.264 * 8.33 * 453.59237) * (((5 / 9) * ((T1 * 1.8 + 32) - 32)) - ((5 / 9) * ((T2 * 1.8 + 32) - 32))) / ((W / 1000) * 1000 * 0.238845896628 * E))) / 60;
+    
+    setHeatingTime(Math.round(T));
+  };
 
   useEffect(() => {
-    const S = alcoholStrength / 100;
-    const W = power;
-    const V = flowRate;
-    const P = useHeatLoss ? parseFloat(heatLossPercentage) : 0;
-
-    const F0 = (((((1 - S) + (S / 0.789)) * (W / (((1 - S) * 2260) + (855 * S)))) * 60) * 10) / (V / 0.06) / 10;
-    const F = F0 - (P * F0) / 100;
-
-    setRefluxRatio(F.toFixed(1));
-  }, [alcoholStrength, power, flowRate, useHeatLoss, heatLossPercentage, useAlcoholTemp, alcoholTemp]);
+    calculateHeatingTime();
+  }, [volume, power, initialTemp, finalTemp, efficiency, useEfficiency]);
 
   return (
     <div className="calc-container">
       <div className="calc-header">
         <div className="calc-icon">
-          <img src="/icons/reflu.png" alt="" />
+          <img src="/icons/heater.png" alt="" />
         </div>
-        <h1 className="calc-title">Reflüks Oranı Hesaplama</h1>
+        <h1 className="calc-title">Küp Isıtma Süresi Hesaplayıcı</h1>
       </div>
 
       <div className="calc-bottom">
         <div className="calc-inputs">
           <Input
-            title="Çıkış Alkol Derecesi"
-            unit="%"
-            value={alcoholStrength}
-            setter={setAlcoholStrength}
+            title="Hacim"
+            unit="L"
+            value={volume}
+            setter={setVolume}
           />
-
           <Input
-            title="Verilen Güç"
+            title="Güç"
             unit="W"
             value={power}
             setter={setPower}
           />
-
           <Input
-            title="Akış Hızı"
-            unit="L/sa"
-            value={flowRate}
-            setter={setFlowRate}
+            title="Başlangıç Sıcaklığı"
+            unit="°C"
+            value={initialTemp}
+            setter={setInitialTemp}
+          />
+          <Input
+            title="Bitiş Sıcaklığı"
+            unit="°C"
+            value={finalTemp}
+            setter={setFinalTemp}
           />
 
-          <div className="w-full">
-            <div className="flex gap-2.5 items-center text-sm mb-2">
-              <Toggle state={useHeatLoss} setState={setUseHeatLoss} />
-              <span>Isı Kaybı Yüzdesi, <b>%</b></span>
-            </div>
-            {useHeatLoss && (
-              <Input 
-                title={""}
-                unit={""}
-                value={heatLossPercentage}
-                setter={setHeatLossPercentage}
-              />
-            )}
-          </div>
 
-          <div className="w-full">
+        <div className="w-full">
             <div className="flex gap-2.5 items-center text-sm mb-2">
-              <Toggle state={useAlcoholTemp} setState={setUseAlcoholTemp} />
-              <span>Çıkış Alkol Sıcaklığı, <b>°C</b></span>
+              <Toggle state={useEfficiency} setState={setUseEfficiency} />
+              <span>Isıtıcı Verimliliği, <b>%</b></span>
             </div>
-            {useAlcoholTemp && (
+            
+            {useEfficiency && (
               <Input 
                 title={""}
                 unit={""}
-                value={alcoholTemp}
-                setter={setAlcoholTemp}
+                value={efficiency}
+                setter={setEfficiency}
               />
             )}
-          </div>
+        </div>
 
         </div>
 
         <div className="calc-result">
-          <div className="divide-y space-y-2">
-            <div className="flex justify-between w-full pt-2">
-              <span>Reflüks Oranı:</span>
-              <span><b>{refluxRatio}</b></span>
+          {heatingTime !== 0 && (
+            <div className="divide-y space-y-2">
+              <div className="flex justify-between w-full pt-2">
+                <span>Isıtma Süresi:</span>
+                <span><b>{heatingTime}</b> dakika</span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

@@ -7,10 +7,18 @@ export default function Chaptalization() {
   const [wineVolume, setWineVolume] = useState(30)
   const [sugarMass, setSugarMass] = useState(0)
 
+  const [error, setError] = useState(false)
+
   const calculateSugarMass = () => {
     const P1 = parseFloat(initialSugarContent)
     const P2 = parseFloat(requiredSugarContent)
     const V = parseFloat(wineVolume)
+
+    if(P1 > P2){
+      setError("Başlangıç şeker değeri, gerekli şeker değerinden yüksek olamaz!")
+    }else{
+      setError(false)
+    }
     
     const M = (((V * 1.5 * (P2 - P1)) / 16) * 0.45) / 3.785410
     setSugarMass(M.toFixed(3))
@@ -55,8 +63,16 @@ export default function Chaptalization() {
           {sugarMass !== 0 && (
             <div className="divide-y space-y-2">
               <div className="flex justify-between w-full pt-2">
-                <span>Eklenmesi Gereken Şeker Kütlesi :</span>
-                <span><b>{sugarMass}</b> kg</span>
+                {error ? (
+                  <span className="text-red-600">
+                    {error}
+                  </span>
+                ) : 
+                  <>
+                    <span>Eklenmesi Gereken Şeker Kütlesi :</span>
+                    <span><b>{sugarMass}</b> kg</span>
+                  </>
+                }
               </div>
             </div>
           )}

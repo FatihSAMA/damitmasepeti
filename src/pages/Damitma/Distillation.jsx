@@ -9,7 +9,6 @@ export default function Distillation() {
   const [temperature, setTemperature] = useState(20); // Distilat sıcaklığı
   const [efficiency, setEfficiency] = useState(100); // Verimlilik
   const [useEfficiency, setUseEfficiency] = useState(false); // Verimlilik toggle
-  const [useTemperature, setUseTemperature] = useState(false); // Sıcaklık toggle
   const [distillateVolume, setDistillateVolume] = useState(0); // Distilat hacmi
   const [remainingVolume, setRemainingVolume] = useState(0); // Kalan hacim
 
@@ -79,20 +78,7 @@ export default function Distillation() {
             )}
           </div>
 
-          <div className="w-full">
-            <div className="flex gap-2.5 items-center text-sm mb-2">
-              <Toggle state={useTemperature} setState={setUseTemperature} />
-              <span>Distilat Sıcaklığı, <b>°C</b></span>
-            </div>
-            {useTemperature && (
-              <Input 
-                title={""}
-                unit={""}
-                value={temperature}
-                setter={setTemperature}
-              />
-            )}
-          </div>
+
         </div>
 
         <div className="calc-result">

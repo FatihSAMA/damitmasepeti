@@ -17,9 +17,8 @@ export default function RefluxRatioCalculator() {
     const W = power;
     const V = flowRate;
     const P = useHeatLoss ? parseFloat(heatLossPercentage) : 0;
-    const T = useAlcoholTemp ? alcoholTemp : 20; // Varsayılan sıcaklık 20 °C
+    const T = useAlcoholTemp ? alcoholTemp : 20; 
   
-    // Formülü güncelleyin (T'yi nasıl dahil edeceğiniz hakkında bilgi vermelisiniz)
     const F0 = (((((1 - S) + (S / 0.789)) * (W / (((1 - S) * 2260) + (855 * S)))) * 60) * 10) / (V / 0.06) / 10;
     const F = F0 - (P * F0) / 100;
   

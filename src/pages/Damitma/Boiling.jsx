@@ -4,30 +4,37 @@ import Toggle from "../../components/Toggle";
 
 // Alkol oranı ve basınca bağlı kaynama sıcaklığı verileri
 const data = {
-  "0": [100, 100.2, 100.4, 100.6, 100.8, 101, 101.2, 101.4],
-  "10": [94.2, 94.4, 94.6, 94.8, 95, 95.2, 95.4, 95.6],
-  "20": [88.6, 88.8, 89, 89.2, 89.4, 89.6, 89.8, 90],
-  // Diğer alkol oranları ve karşılık gelen sıcaklık değerlerini ekleyin
+  "0": [37.9, 51.2, 59.8, 66.5, 83.3, 93.2, 100, 106.3, 111.4, 115.8, 120.1],
+  "10": [32.5, 45.2, 53.3, 60.5, 76.7, 87, 91, 100.6, 105.8, 110.3, 114.3],
+  "20": [29.5, 42, 49.9, 56.2, 72, 82, 87, 94.7, 100, 104.5, 108.8],
+  "30": [27.7, 40, 47.8, 54, 69.3, 79.3, 84.5, 91.2, 96.5, 100.8, 104.6],
+  "40": [26.4, 38.6, 46.4, 53.5, 67.7, 77.7, 83, 89.5, 94.3, 98.4, 102.2],
+  "50": [25.5, 37.7, 45.4, 51.2, 66, 75, 82, 88, 92.8, 96.8, 100.6],
+  "60": [24.7, 36.9, 44.6, 50.5, 64.9, 74.6, 81, 87, 91.9, 96, 99.7],
+  "70": [24, 36.1, 43.9, 49.8, 64.5, 74.2, 80, 86.1, 91.1, 95.2, 98.8],
+  "75": [23.7, 35.8, 43.5, 49.5, 64.3, 74, 79.7, 85.6, 90.7, 94.7, 98.4],
+  "80": [23.3, 35.4, 43.1, 49.2, 63.8, 73.7, 79.5, 85.3, 90.4, 94.4, 98],
+  "85": [23, 35, 42.7, 48.9, 63.6, 73.5, 79.3, 85, 90, 93.7, 97.5],
+  "90": [22.6, 34.8, 42.4, 48.6, 63.6, 73.2, 79, 84.8, 89.7, 93.5, 97.2],
+  "95": [22.4, 34.6, 42.2, 48.3, 63.3, 72.8, 78.6, 84.4, 89.3, 93.1, 96.7],
+  "100": [22.2, 34.4, 42.1, 48.1, 63.2, 72.6, 78.4, 84.2, 89, 92.8, 96.4],
 };
 
-const pressures = [0, 20, 40, 60, 80, 100, 120, 140]; // Basınç değerleri mm Hg cinsindendir
+const pressures = [50, 100, 150, 200, 400, 600, 760, 943, 1126, 1310, 1495]; // mm Hg
 
 const interpolate = (value, x, y) => {
   if (x.length === 0 || y.length === 0) return NaN;
+  if (value <= x[0]) return y[0]; // Değer en düşük basınçtan küçükse
+  if (value >= x[x.length - 1]) return y[y.length - 1]; // Değer en yüksek basınçtan büyükse
 
-  if (x.length === 1) return y[0];
-
-  const i = x.findIndex((xi) => xi > value);
-  if (i === -1) return y[y.length - 1];
+  const i = x.findIndex((xi) => xi >= value);
+  if (i === -1 || i === 0) return y[0]; // Değer aralık dışında
 
   const x0 = x[i - 1];
   const x1 = x[i];
   const y0 = y[i - 1];
   const y1 = y[i];
 
-  if (x0 === x1) return y0;
-
-  console.log(`Interpolating: value=${value}, x0=${x0}, x1=${x1}, y0=${y0}, y1=${y1}`);
   return y0 + ((value - x0) * (y1 - y0)) / (x1 - x0);
 };
 
@@ -35,14 +42,12 @@ const findClosestAlcoholContent = (alcoholContent) => {
   const alcoholContents = Object.keys(data).map((key) => parseFloat(key));
   const low = Math.max(...alcoholContents.filter((ac) => ac <= alcoholContent));
   const high = Math.min(...alcoholContents.filter((ac) => ac >= alcoholContent));
-  console.log(`Alcohol content: ${alcoholContent}, low=${low}, high=${high}`);
   return { low, high };
 };
 
 const getPressureColumns = (pressure_kPa) => {
   const col_low = pressures.filter((p) => p <= pressure_kPa);
   const col_high = pressures.filter((p) => p >= pressure_kPa);
-  console.log(`Pressure: ${pressure_kPa} kPa, col_low=${col_low}, col_high=${col_high}`);
   return {
     col_low: col_low[col_low.length - 1],
     col_high: col_high[0],
@@ -59,18 +64,21 @@ export default function BoilingTemperatureCalculator() {
   const [boilingTemperature, setBoilingTemperature] = useState(0);
 
   const calculateBoilingTemperature = () => {
-    const pressure_kPa = pressure * 0.13332236842;
-
+    const pressure_kPa = pressure * 0.13332236842; // kPa'ya çevirme
     const { low: alc_low, high: alc_high } = findClosestAlcoholContent(alcoholContent);
-    const { col_low, col_high, p_low, p_high } = getPressureColumns(pressure_kPa);
+    const { col_low, col_high } = getPressureColumns(pressure);
 
-    console.log(`Interpolating for alc_low: ${alc_low}, alc_high: ${alc_high}`);
-    const t_low = interpolate(pressure_kPa, pressures, data[alc_low]);
-    const t_high = interpolate(pressure_kPa, pressures, data[alc_high]);
+    // Alc_low ve Alc_high arasında interpolasyon
+    const t_low = interpolate(pressure, pressures, data[alc_low]);
+    const t_high = interpolate(pressure, pressures, data[alc_high]);
 
-    console.log(`t_low=${t_low}, t_high=${t_high}`);
-    const boiling_temp = alc_low === alc_high ? t_low : interpolate(alcoholContent, [alc_low, alc_high], [t_low, t_high]);
-    console.log(`Calculated boiling temperature: ${boiling_temp}`);
+    let boiling_temp = alc_low === alc_high ? t_low : interpolate(alcoholContent, [alc_low, alc_high], [t_low, t_high]);
+
+    // Sıcaklık etkisini dahil etme
+    if (useCustomTemp) {
+      boiling_temp += (temperature - 20); // Örnek olarak, sıvının mevcut sıcaklığına göre kaynama sıcaklığına bir düzeltme ekliyoruz
+    }
+
     setBoilingTemperature(Math.round(boiling_temp * 100) / 100);
   };
 
@@ -131,3 +139,4 @@ export default function BoilingTemperatureCalculator() {
     </div>
   );
 }
+

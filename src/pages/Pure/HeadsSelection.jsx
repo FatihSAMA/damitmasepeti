@@ -7,7 +7,6 @@ export default function HeadsSelection() {
   const [rawAlcoholStrength, setRawAlcoholStrength] = useState(40); // Spirtos-su alkol oranı
   const [headsShare, setHeadsShare] = useState(10); // Baş kesimi oranı
   const [temperature, setTemperature] = useState(20); // Sıcaklık
-  const [useTemperature, setUseTemperature] = useState(false); // Sıcaklık toggle
   const [absoluteAlcoholVolume, setAbsoluteAlcoholVolume] = useState(0); // Mutlak alkol hacmi
   const [headsVolume, setHeadsVolume] = useState(0); // Baş kesimi hacmi
 
@@ -28,7 +27,7 @@ export default function HeadsSelection() {
 
   useEffect(() => {
     calculateHeadsSelection();
-  }, [rawAlcoholVolume, rawAlcoholStrength, headsShare, useTemperature, temperature]);
+  }, [rawAlcoholVolume, rawAlcoholStrength, headsShare, temperature]);
 
   return (
     <div className="calc-container">
@@ -60,20 +59,6 @@ export default function HeadsSelection() {
             setter={setHeadsShare}
           />
 
-          <div className="w-full">
-            <div className="flex gap-2.5 items-center text-sm mb-2">
-              <Toggle state={useTemperature} setState={setUseTemperature} />
-              <span>Ham alkol sıcaklığı, <b>°C</b></span>
-            </div>
-            {useTemperature && (
-              <Input 
-                title={""}
-                unit={""}
-                value={temperature}
-                setter={setTemperature}
-              />
-            )}
-          </div>
         </div>
 
         <div className="calc-result">

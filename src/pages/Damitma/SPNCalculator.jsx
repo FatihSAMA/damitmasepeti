@@ -8,7 +8,7 @@ export default function SPNCalculator() {
   const [bottomRingHeight, setBottomRingHeight] = useState(100);
   const [topRingHeight, setTopRingHeight] = useState(0);
   const [packingType, setPackingType] = useState("3x3 paslanmaz çelik 0,2 mm");
-  const [packingDensity, setPackingDensity] = useState(5);
+  const [packingDensity, setPackingDensity] = useState(10);
   const [volume, setVolume] = useState(0);
   const [weight, setWeight] = useState(0);
   const [theoreticalPlates, setTheoreticalPlates] = useState(0);
