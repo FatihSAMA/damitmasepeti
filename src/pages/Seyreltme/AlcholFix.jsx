@@ -148,7 +148,7 @@ export default function AlcholFix(){
         }
         else{
             setError(false)
-            const res = table[Math.round(temp)][Math.round(alchol)]
+            const res = table[Math.round(temp)][Math.round(alchol) - 1]
             setResult(res)
         }
         
