@@ -31,6 +31,7 @@ export default function MutlakAlkol() {
     secondDistillationMass
   ]);
 
+  
   const handleCalculationMethodChange = (e) => {
     setCalculationMethod(e.target.value);
   };
@@ -75,7 +76,7 @@ export default function MutlakAlkol() {
             <label htmlFor="type" className="label">Hesaplama Yöntemi</label>
             <select id="type" className="input py-1.5 px-2" value={calculationMethod} onChange={handleCalculationMethodChange}>
               <option value="volume">İkinci damıtmadan sonra alkol hacmine göre hesaplayın</option>
-              <option value="mass">İkinci damıtmadan sonra alkol kütlesine göre hesaplayın</option>
+              {/* <option value="mass">İkinci damıtmadan sonra alkol kütlesine göre hesaplayın</option> */}
             </select>
           </div>
 

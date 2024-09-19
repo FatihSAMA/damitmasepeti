@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
-import Toggle from "../../components/Toggle";
 
 export default function SPNCalculator() {
   const [height, setHeight] = useState(1000);
@@ -8,81 +7,110 @@ export default function SPNCalculator() {
   const [bottomRingHeight, setBottomRingHeight] = useState(100);
   const [topRingHeight, setTopRingHeight] = useState(0);
   const [packingType, setPackingType] = useState("3x3 paslanmaz çelik 0,2 mm");
-  const [packingDensity, setPackingDensity] = useState(10);
+
   const [volume, setVolume] = useState(0);
   const [weight, setWeight] = useState(0);
   const [theoreticalPlates, setTheoreticalPlates] = useState(0);
 
   useEffect(() => {
-    // Hacim hesaplama formülü
     const V = ((innerDiameter / 100) / 2) * 3.14159 * ((innerDiameter / 100) / 2) * ((height - bottomRingHeight - topRingHeight) / 100);
     setVolume(V);
-
-    // Ağırlık hesaplama formülü
+    
     const weightTable = {
-      "3x3 paslanmaz çelik 0,2 mm": 1,
-      "3x3 paslanmaz çelik 0,3 mm": 1.5,
-      "3,5x3,5 paslanmaz çelik 0,25 mm": 1,
-      "4x4 paslanmaz çelik 0,3 mm": 1.1,
-      "5x5 paslanmaz çelik 0,3 mm": 1,
-      "3x3 bakır 0,25 mm": 1.5,
-      "4x4 bakır 0,3 mm": 1.3,
-      "5x5 bakır 0,35 mm": 1.2,
-      // Diğer SPN türleri buraya eklenecek
+      "2x2 paslanmaz çelik 0,2 mm": {
+        weight: 1.5,
+        height: 2
+      },
+      "3x3 paslanmaz çelik 0,2 mm": {
+        weight: 1,
+        height: 3
+      },
+      "3x3 paslanmaz çelik 0,3 mm": {
+        weight: 1.5,
+        height: 3,
+      },
+      "3,5x3,5 paslanmaz çelik 0,25 mm": {
+        weight: 1,
+        height: 3.5
+      },
+      "4x4 paslanmaz çelik 0,3 mm": {
+        weight: 1.1,
+        height: 4
+      },
+      "5x5 paslanmaz çelik 0,3 mm": {
+        weight: 1,
+        height: 5
+      },
+      "3x3 bakır 0,25 mm": {
+        weight: 1.5,
+        height: 3
+      },
+      "4x4 bakır 0,3 mm": {
+        weight: 1.3,
+        height: 4
+      },
+      "5x5 bakır 0,35 mm": {
+        weight: 1.2,
+        height: 5
+      },
     };
-    const S = weightTable[packingType];
-    const W = V * S * (packingDensity / 1000);
+
+    const S = weightTable[packingType].weight;
+    const W = V * S;
     setWeight(W);
 
-    // Teorik plakaların sayısını hesaplama formülü
-    const C = 10; // Örnek bir sabit değer, gerçek formüle göre ayarlanacak
+    const C = weightTable[packingType].height;
     const T = height / (C * 10);
     setTheoreticalPlates(T);
-  }, [height, innerDiameter, bottomRingHeight, topRingHeight, packingType, packingDensity]);
+  }, [height, innerDiameter, bottomRingHeight, topRingHeight, packingType]);
 
   return (
     <div className="calc-container">
       <div className="calc-header">
         <div className="calc-icon">
-          <img src="/icons/column.png" alt="" />
+          <img src="/icons/nozzle.png" alt="" />
         </div>
-        <h1 className="calc-title">Калькулятор объема насадки СПН</h1>
+        <h1 className="calc-title">SPN Nozul Hacmi Hesaplayıcısı</h1>
       </div>
 
       <div className="calc-bottom">
         <div className="calc-inputs">
           <Input
-            title="Kolon Yüksekliği"
+            title="Sütun Yüksekliği"
             unit="mm"
             value={height}
             setter={setHeight}
           />
           <Input
-            title="İç Çap"
+            title="Çekmecenin İç Çapı"
             unit="mm"
             value={innerDiameter}
             setter={setInnerDiameter}
           />
           <Input
-            title="Alt Tapa Yüksekliği"
+            title="Alt Tapanın Yüksekliği"
             unit="mm"
             value={bottomRingHeight}
             setter={setBottomRingHeight}
           />
           <Input
-            title="Üst Tapa Yüksekliği"
+            title="Üst Tapanın Yüksekliği"
             unit="mm"
             value={topRingHeight}
             setter={setTopRingHeight}
           />
 
           <div className="w-full">
+            <label>
+              SPN Türü
+            </label>
             <select
               className="input"
               value={packingType}
               onChange={(e) => setPackingType(e.target.value)}
             >
               <option value="">SPN Türü Seçin</option>
+              <option value="2x2 paslanmaz çelik 0,2 mm">2x2 paslanmaz çelik 0,2 mm</option>
               <option value="3x3 paslanmaz çelik 0,2 mm">3x3 paslanmaz çelik 0,2 mm</option>
               <option value="3x3 paslanmaz çelik 0,3 mm">3x3 paslanmaz çelik 0,3 mm</option>
               <option value="3,5x3,5 paslanmaz çelik 0,25 mm">3,5x3,5 paslanmaz çelik 0,25 mm</option>
@@ -91,25 +119,9 @@ export default function SPNCalculator() {
               <option value="3x3 bakır 0,25 mm">3x3 bakır 0,25 mm</option>
               <option value="4x4 bakır 0,3 mm">4x4 bakır 0,3 mm</option>
               <option value="5x5 bakır 0,35 mm">5x5 bakır 0,35 mm</option>
-              {/* Diğer SPN türleri buraya eklenecek */}
             </select>
           </div>
 
-          <div className="w-full">
-            <div className="flex gap-2.5 items-center text-sm mb-2">
-              <Toggle state={packingDensity !== 10} setState={(state) => setPackingDensity(state ? 100 : 10)} />
-              <span>Sıkıştırma Yüzdesi, <b>%</b></span>
-            </div>
-
-            {packingDensity !== 10 && (
-              <Input
-                title=""
-                unit=""
-                value={packingDensity}
-                setter={setPackingDensity}
-              />
-            )}
-          </div>
 
         </div>
 

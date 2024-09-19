@@ -18,7 +18,7 @@ import Power from "./pages/Damitma/Power";
 import HeatingTime from "./pages/Damitma/HeatingTime";
 import Boiling from "./pages/Damitma/Boiling";
 import SPNCalculator from "./pages/Damitma/SPNCalculator";
-import LoadUnderStage from "./pages/Damitma/LoadUnderStage";
+// import LoadUnderStage from "./pages/Damitma/LoadUnderStage";
 import Reflu from "./pages/Damitma/Reflu";
 import Distillation from "./pages/Damitma/Distillation";
 import HeadsSelection from "./pages/Pure/HeadsSelection";
@@ -27,16 +27,17 @@ import AlcoholDensity from "./pages/Seyreltme/AlcholDensity";
 import AlcoholWater from "./pages/Seyreltme/AlcholWater";
 import AlcoholMixing from "./pages/Seyreltme/AlcholMixing";
 import UnitConverter from "./pages/Other/UnitConverter";
-import SugarCorrection from "./pages/Pure/SugarCorrection";
 import MutlakAlkol from "./pages/Other/MutlakAlkol";
 import Anason from "./pages/Other/Anason";
+import AS3 from "./pages/Pure/AS3";
+import SecondDistillation from "./pages/Damitma/SecondDistillation";
 
 
 
 const router = createBrowserRouter([{
     path : "/",
     element : <MainLayout />,
-    errorElement: <NotFound />,
+    // errorElement: <NotFound />,
     children : [
         {
             index : true,
@@ -79,6 +80,10 @@ const router = createBrowserRouter([{
                     path: "8",
                     element: <Malt />
                 },
+                {
+                    path: "30",
+                    element: <AS3 />
+                },
 
                 // Damitma
                 {
@@ -99,12 +104,12 @@ const router = createBrowserRouter([{
                 },
                 {
                     path: "13",
-                    element: <SPNCalculator /> // sorunlu
+                    element: <SPNCalculator />
                 },
-                {
-                    path: "14",
-                    element: <LoadUnderStage /> //sorunlu
-                },
+                // {
+                //     path: "14",
+                //     element: <LoadUnderStage />
+                // },
                 {
                     path: "15",
                     element: <Reflu />
@@ -120,6 +125,10 @@ const router = createBrowserRouter([{
                 {
                     path: "18",
                     element: <LiquidTimer /> 
+                },
+                {
+                    path: "31",
+                    element: <SecondDistillation />
                 },
 
 

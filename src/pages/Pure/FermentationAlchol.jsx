@@ -1,75 +1,82 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
 
-// Updated sugar-to-alcohol table
-const sugarTable = [
-  { sugar: 0, alcohol: -0.25 },
-  { sugar: 0.5, alcohol: 0 },
-  { sugar: 1, alcohol: 0.25 },
-  { sugar: 1.5, alcohol: 0.5 },
-  { sugar: 2, alcohol: 0.75 },
-  { sugar: 2.5, alcohol: 1 },
-  { sugar: 3, alcohol: 1.25 },
-  { sugar: 3.5, alcohol: 1.5 },
-  { sugar: 4, alcohol: 1.75 },
-  { sugar: 4.5, alcohol: 2 },
-  { sugar: 5, alcohol: 2.25 },
-  { sugar: 5.5, alcohol: 2.5 },
-  { sugar: 6, alcohol: 2.75 },
-  { sugar: 6.5, alcohol: 3 },
-  { sugar: 7, alcohol: 3.25 },
-  { sugar: 7.5, alcohol: 3.5 },
-  { sugar: 8, alcohol: 3.75 },
-  { sugar: 8.5, alcohol: 4 },
-  { sugar: 9, alcohol: 4.25 },
-  { sugar: 9.5, alcohol: 4.5 },
-  { sugar: 9.88, alcohol: 4.75 },
-  { sugar: 10.25, alcohol: 5 },
-  { sugar: 10.75, alcohol: 5.25 },
-  { sugar: 11.25, alcohol: 5.5 },
-  { sugar: 11.75, alcohol: 5.75 },
-  { sugar: 12.25, alcohol: 6 },
-  { sugar: 12.75, alcohol: 6.25 },
-  { sugar: 13.25, alcohol: 6.5 },
-  { sugar: 13.38, alcohol: 6.75 },
-  { sugar: 14, alcohol: 7 },
-  { sugar: 14.5, alcohol: 7.25 },
-  { sugar: 15, alcohol: 7.5 },
-  { sugar: 15.38, alcohol: 7.75 },
-  { sugar: 15.75, alcohol: 8 },
-  { sugar: 16.25, alcohol: 8.25 },
-  { sugar: 16.75, alcohol: 8.5 },
-  { sugar: 17.25, alcohol: 8.75 },
-  { sugar: 17.75, alcohol: 9 },
-  { sugar: 18.5, alcohol: 9.25 },
-  { sugar: 18.75, alcohol: 9.5 },
-  { sugar: 19.13, alcohol: 9.75 },
-  { sugar: 19.5, alcohol: 10 },
-  { sugar: 20, alcohol: 10.25 },
-  { sugar: 20.5, alcohol: 10.5 },
-  { sugar: 21, alcohol: 10.75 },
-  { sugar: 21.5, alcohol: 11 },
-  { sugar: 22, alcohol: 11.25 },
-  { sugar: 22.5, alcohol: 11.5 },
-  { sugar: 23.13, alcohol: 11.75 },
-  { sugar: 23.25, alcohol: 12 },
-  { sugar: 24, alcohol: 12.25 },
-  { sugar: 24.25, alcohol: 12.5 },
-  { sugar: 24.5, alcohol: 12.75 },
-  { sugar: 25, alcohol: 13 }
-];
+const sugarTable = {
+  0: -0.25,
+  0.5: 0,
+  1: 0.25,
+  1.5: 0.5,
+  2: 0.75,
+  2.5 : 1,
+  3: 1.25,
+  3.5: 1.5,
+  4: 1.75,
+  4.5: 2,
+  5: 2.25,
+  5.5: 2.5,
+  6: 2.75,
+  6.5: 3,
+  7: 3.25,
+  7.5: 3.5,
+  8: 3.75,
+  8.5: 4,
+  9: 4.25,
+  9.5: 4.5,
+  9.88: 4.75,
+  10.25: 5,
+  10.75: 5.25,
+  11.25: 5.5,
+  11.75: 5.75,
+  12.25: 6,
+  12.75: 6.25,
+  13.25: 6.5,
+  13.38: 6.75,
+  14: 7,
+  14.5: 7.25,
+  15: 7.5,
+  15.38: 7.75,
+  15.75: 8,
+  16.25: 8.25,
+  16.75: 8.5,
+  17.25: 8.75,
+  17.75: 9,
+  18.5: 9.25,
+  18.75: 9.5,
+  19.13: 9.75,
+  19.5: 10,
+  20: 10.25,
+  20.5: 10.5,
+  21: 10.75,
+  21.5: 11,
+  22: 11.25,
+  22.5: 11.5,
+  23.13: 11.75,
+  23.25: 12,
+  24: 12.25,
+  24.25: 12.5,
+  24.5: 12.75,
+  25: 13
+};
 
-const interpolate = (value, x, y) => {
-  if (value <= x[0]) return y[0];
-  if (value >= x[x.length - 1]) return y[y.length - 1];
+const interpolate = (x, table) => {
+  const keys = Object.keys(table).map(Number).sort((a, b) => a - b);
+  
+  if (keys.includes(x)) {
+    return table[x];
+  }
 
-  const i = x.findIndex(xi => xi > value);
-  const x0 = x[i - 1];
-  const x1 = x[i];
-  const y0 = y[i - 1];
-  const y1 = y[i];
+  const lowerKey = keys.reduce((prev, curr) => (curr <= x ? curr : prev), keys[0]);
+  const upperKey = keys.find((key) => key > x);
 
-  return y0 + ((value - x0) * (y1 - y0)) / (x1 - x0);
+  if (upperKey === undefined) {
+    return table[lowerKey];
+  }
+
+  const lowerValue = table[lowerKey];
+  const upperValue = table[upperKey];
+  const slope = (upperValue - lowerValue) / (upperKey - lowerKey);
+
+  return lowerValue + slope * (x - lowerKey);
 };
 
 export default function FermentationAlchol() {
@@ -78,23 +85,11 @@ export default function FermentationAlchol() {
   const [result, setResult] = useState(null);
 
   useEffect(() => {
-    calculate();
+    const initialAlchol = interpolate(initialSugar, sugarTable);
+    const finalAlchol = interpolate(finalSugar, sugarTable);
+
+    setResult(initialAlchol - finalAlchol);
   }, [initialSugar, finalSugar]);
-
-  const calculate = () => {
-    const sugarDifference = initialSugar - finalSugar;
-    const x = sugarTable.map(entry => entry.sugar);
-    const y = sugarTable.map(entry => entry.alcohol);
-
-    // Debugging: Check the input and output
-    console.log("Sugar Difference:", sugarDifference);
-    console.log("X values:", x);
-    console.log("Y values:", y);
-
-    // Perform interpolation
-    const interpolatedAlcohol = interpolate(sugarDifference, x, y);
-    setResult(interpolatedAlcohol);
-  };
 
   return (
     <div className="calc-container">

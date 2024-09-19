@@ -109,20 +109,6 @@ export default function BoilingTemperatureCalculator() {
             value={pressure}
             setter={setPressure}
           />
-          <div className="w-full">
-            <div className="flex gap-2.5 items-center text-sm mb-2">
-              <Toggle state={useCustomTemp} setState={setUseCustomTemp} />
-              <span>Sıvı Sıcaklığı, <b>°C</b></span>
-            </div>
-            {useCustomTemp && (
-              <Input 
-                title={""}
-                unit={""}
-                value={temperature}
-                setter={setTemperature}
-              />
-            )}
-          </div>
         </div>
 
         <div className="calc-result">

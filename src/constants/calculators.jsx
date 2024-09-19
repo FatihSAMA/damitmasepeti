@@ -21,9 +21,11 @@ const calculators = [
                 link: "#"
             },
             {
+                // sorulacak
                 title: "AS-3 Şeker Ölçüm Cihazı Okumalarının Düzeltilmesi",
                 desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
                 icon: "/icons/as3.png",
+                // link: "/calc/30"
                 link: "#"
             },
             {
@@ -99,19 +101,18 @@ const calculators = [
                 link: "/calc/12"
             },
             {
-                // hatalı
-                title: "SPN nozul hacmi hesaplayıcısı",
+                title: "SPN Nozul Hacmi Hesaplayıcısı",
                 desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
                 icon: "/icons/nozzle.png",
                 link: "/calc/13"
             },
-            {
-                // kaldırılacak
-                title: "Yük Altında Kademe Değiştirici Uzunluğu",
-                desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                icon: "/icons/column.png",
-                link: "/calc/14"
-            },
+            // {
+            //     // kaldırılacak
+            //     title: "Yük Altında Kademe Değiştirici Uzunluğu",
+            //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+            //     icon: "/icons/column.png",
+            //     link: "/calc/14"
+            // },
             {
                 title: "Reflü Oranının Hesaplanması",
                 desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
@@ -141,7 +142,7 @@ const calculators = [
                 title: "İkinci Damıtma",
                 desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
                 icon: "/icons/second.png",
-                link: "#"
+                link: "/calc/31"
             },
             {
                 title: "Sıvı Çekilme Oranı Kronometresi",

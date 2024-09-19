@@ -33,7 +33,7 @@ export default function LiquidTimer() {
     const V2 = (N / S) / 0.025; // Alkollü sıvı için
     const V3 = (N / S) * 60; // mL/dk cinsinden
     const V4 = (N / S) / 0.05; // Su için
-    const M = (totalVolume * seconds) / (1000 * V1); // Tüm hacim için geçen süre
+    const M = totalVolume / V3; // Tüm hacim için geçen süre
 
     setFlowRateLh(V1);
     setFlowRateMlMin(V3);
@@ -107,11 +107,11 @@ export default function LiquidTimer() {
               <span><b>{flowRateWater.toFixed(1)}</b> damla/s</span>
             </div>
 
-            {/* sorunlu */}
-            {/* <div className="flex justify-between w-full pt-2">
+            <div className="flex justify-between w-full pt-2">
               <span>Tüm Hacim İçin Geçen Süre:</span>
-              <span>{Math.floor(totalTime)}</span>
-            </div> */}
+              <span><b>{Math.round(totalTime / 60).toString().padStart(2, '0')}:{Math.round(totalTime % 60).toString().padStart(2, '0')}</b> saat</span>
+            </div>
+
           </div>
         </div>
       </div>

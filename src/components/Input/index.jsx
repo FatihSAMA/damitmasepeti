@@ -1,6 +1,5 @@
 export default function Input({ title, unit, setter, value }) {
     const handleChange = (e) => {
-        // Boş değerleri önleyin ve geçerli bir sayıya dönüştürün
         const newValue = parseFloat(e.target.value);
         if (!isNaN(newValue)) {
             setter(newValue);
@@ -24,7 +23,7 @@ export default function Input({ title, unit, setter, value }) {
                 <input
                     className="input"
                     type="number"
-                    value={value || ''}
+                    value={value || 0}
                     onChange={handleChange}
                 />
                 {/* Buttons */}

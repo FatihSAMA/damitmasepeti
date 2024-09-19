@@ -32,7 +32,7 @@ export default function Power() {
       const V2 = parseFloat(requiredPower)
       R = (220 * 220) / V1
       U = Math.sqrt(V2 * R)
-    //   setResistance(R.toFixed(2))
+      setResistance(R.toFixed(2))
     } else if (calculationMethod === "resistance") {
       R = parseFloat(resistance)
       const V2 = parseFloat(requiredPower)

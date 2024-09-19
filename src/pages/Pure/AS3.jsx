@@ -1,26 +1,8 @@
-import { useState, useEffect } from "react"
 import Input from "../../components/Input"
-import correctionData from "../../data/sugarCorrection.json" 
 
-export default function SugarCorrection() {
-  const [temperature, setTemperature] = useState(1)
-  const [sugarContent, setSugarContent] = useState(1)
-  const [correction, setCorrection] = useState(null)
+export default function AS3() {
 
-  const handleCalculate = () => {
-    const tempIndex = correctionData.temperatures.indexOf(temperature)
-    const sugarIndex = correctionData.sugarContents.indexOf(sugarContent)
 
-    if (tempIndex !== -1 && sugarIndex !== -1) {
-      setCorrection(correctionData.corrections[tempIndex][sugarIndex])
-    } else {
-      setCorrection("Geçersiz değerler")
-    }
-  }
-
-  useEffect(() => {
-    handleCalculate()
-  }, [temperature, sugarContent])
 
   return (
     <div className="calc-container">
@@ -32,7 +14,7 @@ export default function SugarCorrection() {
       </div>
       <div className="calc-bottom">
         <div className="calc-inputs">
-          <Input
+          {/* <Input
             title="Sıcaklık"
             unit="°C"
             value={temperature}
@@ -43,14 +25,14 @@ export default function SugarCorrection() {
             unit="%"
             value={sugarContent}
             setter={setSugarContent}
-          />
+          /> */}
         </div>
         <div className="calc-result">
-          {correction !== null && (
+          {/* {correction !== null && (
             <div className="result">
               <p>Gerçek Şeker Oranı: <b>{correction}</b>%</p>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
-import Toggle from "../../components/Toggle";
 
 export default function UnitConverter() {
-  const [conversionType, setConversionType] = useState("volumeToMass");
+  const [conversionType, setConversionType] = useState("brixToSpecificGravity");
   const [volume, setVolume] = useState(1000); // Alkol hacmi, ml
   const [strength, setStrength] = useState(95); // Alkol oranı, %(v/v)
-  const [temperature, setTemperature] = useState(20); // Alkol sıcaklığı, °C
   const [mass, setMass] = useState(1000); // Alkol kütlesi, g
   const [density, setDensity] = useState(0); // Alkol yoğunluğu, g/ml
   const [absoluteVolume, setAbsoluteVolume] = useState(0); // Mutlak alkol hacmi, ml
@@ -64,7 +62,6 @@ export default function UnitConverter() {
   const resetInputs = () => {
     setVolume(1000);
     setStrength(95);
-    setTemperature(20);
     setMass(1000);
     setSugarContent(22);
     setSpecificGravity(1.092);
@@ -81,10 +78,10 @@ export default function UnitConverter() {
           <div className="w-full">
             <label htmlFor="conversionType" className="label">Dönüştürme Türü</label>
             <select id="conversionType" className="input" value={conversionType} onChange={handleConversionTypeChange}>
-              <option value="volumeToMass">Alkol hacmini kütleye çevirme</option>
-              <option value="massToVolume">Alkol kütlesini hacme çevirme</option>
-              <option value="brixToSpecificGravity">Brix'i özgül ağırlığa çevirme</option>
-              <option value="specificGravityToBrix">Özgül ağırlığı Brix'e çevirme</option>
+              {/* <option value="volumeToMass">Alkol hacmini kütleye çevirme</option> */}
+              {/* <option value="massToVolume">Alkol kütlesini hacme çevirme</option> */}
+              <option value="brixToSpecificGravity">Brix&apos;i özgül ağırlığa çevirme</option>
+              <option value="specificGravityToBrix">Özgül ağırlığı Brix&apos;e çevirme</option>
             </select>
           </div>
 
@@ -102,10 +99,6 @@ export default function UnitConverter() {
                 value={strength}
                 setter={setStrength}
               />
-              {/* <div className="w-full">
-                <Toggle state={true} setState={} />
-                <span>Alkol sıcaklığı, °C</span>
-              </div> */}
             </>
           )}
 

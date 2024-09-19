@@ -8,8 +8,6 @@ export default function RefluxRatioCalculator() {
   const [flowRate, setFlowRate] = useState(2); // Akış hızı
   const [heatLossPercentage, setHeatLossPercentage] = useState(10); // Isı kaybı yüzdesi
   const [useHeatLoss, setUseHeatLoss] = useState(false); // Isı kaybı yüzdesi toggle
-  const [alcoholTemp, setAlcoholTemp] = useState(20); // Çıkış alkol sıcaklığı
-  const [useAlcoholTemp, setUseAlcoholTemp] = useState(false); // Çıkış alkol sıcaklığı toggle
   const [refluxRatio, setRefluxRatio] = useState(0); // Reflüks oranı
 
   useEffect(() => {
@@ -17,13 +15,12 @@ export default function RefluxRatioCalculator() {
     const W = power;
     const V = flowRate;
     const P = useHeatLoss ? parseFloat(heatLossPercentage) : 0;
-    const T = useAlcoholTemp ? alcoholTemp : 20; 
   
     const F0 = (((((1 - S) + (S / 0.789)) * (W / (((1 - S) * 2260) + (855 * S)))) * 60) * 10) / (V / 0.06) / 10;
     const F = F0 - (P * F0) / 100;
   
     setRefluxRatio(F.toFixed(1));
-  }, [alcoholStrength, power, flowRate, useHeatLoss, heatLossPercentage, useAlcoholTemp, alcoholTemp]);
+  }, [alcoholStrength, power, flowRate, useHeatLoss, heatLossPercentage]);
   
 
   return (
@@ -73,20 +70,6 @@ export default function RefluxRatioCalculator() {
             )}
           </div>
 
-          <div className="w-full">
-            <div className="flex gap-2.5 items-center text-sm mb-2">
-              <Toggle state={useAlcoholTemp} setState={setUseAlcoholTemp} />
-              <span>Çıkış Alkol Sıcaklığı, <b>°C</b></span>
-            </div>
-            {useAlcoholTemp && (
-              <Input 
-                title={""}
-                unit={""}
-                value={alcoholTemp}
-                setter={setAlcoholTemp}
-              />
-            )}
-          </div>
 
         </div>
 
