@@ -225,7 +225,7 @@ const calculators = [
             {
                 title: "Anason Hesabı",
                 desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                icon: "/icons/alchol6.png",
+                icon: "/icons/anise.png",
                 link: "/calc/29"
             },
         ]

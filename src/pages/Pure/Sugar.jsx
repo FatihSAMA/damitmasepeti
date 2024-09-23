@@ -1,8 +1,32 @@
 import { useState, useEffect } from "react"
 import Input from "../../components/Input"
 import Toggle from "../../components/Toggle"
+import Accordion from "../../components/Accordion"
+import { sanityClient } from "../../../client"
 
 export default function Sugar(){
+
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "seker_puresi"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
     
   const [calculationType, setCalculationType] = useState('hydraulicModule')
 
@@ -89,7 +113,7 @@ export default function Sugar(){
           </div>
 
           <h1 className="calc-title">
-              Şeker Püresi Hesaplayıcı
+              {data?.title}
           </h1>
       </div>
 
@@ -315,6 +339,12 @@ export default function Sugar(){
         </div>
       
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
 
     </div>
   )

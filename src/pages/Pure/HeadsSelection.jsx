@@ -1,8 +1,32 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Toggle from "../../components/Toggle";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
+
 
 export default function HeadsSelection() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "hedef"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
   const [rawAlcoholVolume, setRawAlcoholVolume] = useState(30); // Spirtos-su hacmi
   const [rawAlcoholStrength, setRawAlcoholStrength] = useState(40); // Spirtos-su alkol oranı
   const [headsShare, setHeadsShare] = useState(10); // Baş kesimi oranı
@@ -35,7 +59,9 @@ export default function HeadsSelection() {
         <div className="calc-icon">
           <img src="/icons/lab.png" alt="" />
         </div>
-        <h1 className="calc-title">Hedef Seçim Hesaplayıcı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -74,6 +100,13 @@ export default function HeadsSelection() {
           </div>
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
+
     </div>
   );
 }

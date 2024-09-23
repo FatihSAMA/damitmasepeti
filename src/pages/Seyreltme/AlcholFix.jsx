@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import Input from "../../components/Input"
+import Accordion from "../../components/Accordion"
+import { sanityClient } from "../../../client";
 
 
 const table = [
@@ -132,6 +134,26 @@ const table = [
 
 export default function AlcholFix(){
 
+    const [data, setData] = useState([])
+    useEffect(() => {
+      
+      const fetchData = async () => {
+        
+        try{
+          const query = `*[_type == "calculations" && id == "alkol_sayac"]`
+          const result = await sanityClient.fetch(query)
+          setData(result[0])
+        }
+        catch(err){
+          console.log("Veri çekilirken hata meydana geldi!", err)
+        }
+  
+      }
+  
+      fetchData()
+  
+    }, [])
+
     const [temprature, setTemprature] = useState(25) // 0-40
     const [alcholVolume, setAlcholVolume] = useState(98) // 1-100
     const [result, setResult] = useState(null)
@@ -165,7 +187,7 @@ export default function AlcholFix(){
                 </div>
 
                 <h1 className="calc-title">
-                    Alkol Sayacı Okumalarının Düzeltilmesi
+                    {data?.title}
                 </h1>
             </div>
             
@@ -189,6 +211,11 @@ export default function AlcholFix(){
                 </div>
             </div>
 
+            {data?.accordions?.length > 0 && (
+                data.accordions.map((accordion, index) => (
+                <Accordion title={accordion.title} content={accordion.content} key={index} />
+                ))
+            )}
         </div>
     )
 }

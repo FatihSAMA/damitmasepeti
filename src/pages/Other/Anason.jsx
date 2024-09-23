@@ -1,7 +1,31 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
+
 
 export default function Anason() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "anason"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
   const [alcoholVolume, setAlcoholVolume] = useState(1000); // Alkol Miktarı (ml)
   const [alcoholPercentage, setAlcoholPercentage] = useState(96); // Alkol Yüzdesi (%)
   const [targetPercentage, setTargetPercentage] = useState(45); // Hedeflenen Yüzde (%)
@@ -31,7 +55,12 @@ export default function Anason() {
   return (
     <div className="calc-container">
       <div className="calc-header">
-        <h1 className="calc-title">Anason Hesabı</h1>
+      <div className="calc-icon">
+          <img src="/icons/anise.png" alt="" />
+        </div>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -58,6 +87,12 @@ export default function Anason() {
           </div>
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
     </div>
   );
 }

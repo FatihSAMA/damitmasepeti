@@ -1,7 +1,29 @@
 import { useState, useEffect } from "react"
 import Input from "../../components/Input"
+import Accordion from "../../components/Accordion"
+import { sanityClient } from "../../../client"
 
 export default function AcidCalculator(){
+
+    const [data, setData] = useState([])
+    useEffect(() => {
+      
+      const fetchData = async () => {
+        
+        try{
+          const query = `*[_type == "calculations" && id == "optimum_sira"]`
+          const result = await sanityClient.fetch(query)
+          setData(result[0])
+        }
+        catch(err){
+          console.log("Veri çekilirken hata meydana geldi!", err)
+        }
+  
+      }
+  
+      fetchData()
+  
+    }, [])
 
     const [error, setError] = useState(false)
 
@@ -52,7 +74,7 @@ export default function AcidCalculator(){
                 </div>
 
                 <h1 className="calc-title">
-                    Optimum Şıra Asitliği Hesaplayıcı
+                    {data?.title}
                 </h1>
             </div>
             
@@ -68,6 +90,13 @@ export default function AcidCalculator(){
                     {error && result}
                 </div>
             </div>
+
+            {data?.accordions?.length > 0 && (
+                data.accordions.map((accordion, index) => (
+                <Accordion title={accordion.title} content={accordion.content} key={index} />
+                ))
+            )}
+
 
         </div>
     )

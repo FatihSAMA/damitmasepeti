@@ -1,7 +1,31 @@
 import { useState, useEffect } from "react"
 import Input from "../../components/Input"
+import Accordion from "../../components/Accordion"
+import { sanityClient } from "../../../client"
+
 
 export default function Power() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "power"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
   const [calculationMethod, setCalculationMethod] = useState("nominalPower")
   const [nominalPower, setNominalPower] = useState(3000)
   const [requiredPower, setRequiredPower] = useState(2000)
@@ -48,7 +72,9 @@ export default function Power() {
         <div className="calc-icon">
           <img src="/icons/power.png" alt="" />
         </div>
-        <h1 className="calc-title">Isıtma elemanlarının gücünü sağlanan voltajdan hesaplamak için hesap makinesi</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -115,6 +141,13 @@ export default function Power() {
           )}
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
+      
     </div>
   )
 }

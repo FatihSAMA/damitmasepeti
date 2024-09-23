@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Toggle from "../../components/Toggle";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
 
 // Alkol oranı ve basınca bağlı kaynama sıcaklığı verileri
 const data = {
@@ -57,6 +59,27 @@ const getPressureColumns = (pressure_kPa) => {
 };
 
 export default function BoilingTemperatureCalculator() {
+
+  const [fetchedData, setFetchedData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "kaynama_noktasi"]`
+        const result = await sanityClient.fetch(query)
+        setFetchedData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
   const [alcoholContent, setAlcoholContent] = useState(10);
   const [pressure, setPressure] = useState(760);
   const [useCustomTemp, setUseCustomTemp] = useState(false);
@@ -64,6 +87,7 @@ export default function BoilingTemperatureCalculator() {
   const [boilingTemperature, setBoilingTemperature] = useState(0);
 
   const calculateBoilingTemperature = () => {
+
     const pressure_kPa = pressure * 0.13332236842; // kPa'ya çevirme
     const { low: alc_low, high: alc_high } = findClosestAlcoholContent(alcoholContent);
     const { col_low, col_high } = getPressureColumns(pressure);
@@ -122,6 +146,13 @@ export default function BoilingTemperatureCalculator() {
           )}
         </div>
       </div>
+
+      {fetchedData?.accordions?.length > 0 && (
+        fetchedData.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
+
     </div>
   );
 }

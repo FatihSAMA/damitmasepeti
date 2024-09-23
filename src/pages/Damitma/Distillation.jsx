@@ -1,8 +1,32 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Toggle from "../../components/Toggle";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
 
 export default function Distillation() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "damitma"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
+
   const [volume, setVolume] = useState(20); // Bira hacmi
   const [alcoholStrength, setAlcoholStrength] = useState(20); // Biranın alkol oranı
   const [distillateStrength, setDistillateStrength] = useState(60); // Distilat alkol oranı
@@ -39,7 +63,9 @@ export default function Distillation() {
         <div className="calc-icon">
           <img src="/icons/distillation.png" alt="" />
         </div>
-        <h1 className="calc-title">Damıtma Hesaplayıcı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -94,6 +120,13 @@ export default function Distillation() {
           </div>
         </div>
       </div>
+
+      
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
     </div>
   );
 }

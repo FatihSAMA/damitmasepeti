@@ -1,7 +1,30 @@
 import { Link } from "react-router-dom";
 import Logo from "../Logo";
+import { sanityClient } from "../../../client";
+import { useState, useEffect } from "react";
 
 export default function Footer(){
+    
+    const [data, setData] = useState([])
+    useEffect(() => {
+        
+        const fetchData = async () => {
+        
+        try{
+            const query = `*[_type == "home"]{ footer }`
+            const result = await sanityClient.fetch(query)
+            setData(result[0])
+        }
+        catch(err){
+            console.log("Veri çekilirken hata meydana geldi!", err)
+        }
+
+        }
+
+        fetchData()
+
+    }, [])
+    
     return(
         <footer className="bg-background-dark text-white py-8">
             <div className="xcontainer flex justify-between flex-wrap gap-8">
@@ -9,7 +32,7 @@ export default function Footer(){
                     <Logo />
 
                     <p className="max-w-[400px] text-justify text-sm">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quo harum officia voluptates, voluptatem nesciunt tenetur praesentium inventore magnam, repellat sapiente ea. Id officiis quam aliquam natus sed sint quos.
+                        {data?.footer}
                     </p>
                 </div>
 

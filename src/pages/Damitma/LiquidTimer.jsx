@@ -1,7 +1,31 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
+
 
 export default function LiquidTimer() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "sivi_cekilme"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
   const [collectedVolume, setCollectedVolume] = useState(10); // Toplanan hacim
   const [totalVolume, setTotalVolume] = useState(1000); // Tüm hacim
   const [isRunning, setIsRunning] = useState(false); // Kronometre durumu
@@ -55,7 +79,9 @@ export default function LiquidTimer() {
         <div className="calc-icon">
           <img src="/icons/timer.png" alt="Kronometre" />
         </div>
-        <h1 className="calc-title">Sıvı Akış Hızı Kronometresi</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -115,6 +141,12 @@ export default function LiquidTimer() {
           </div>
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
     </div>
   );
 }

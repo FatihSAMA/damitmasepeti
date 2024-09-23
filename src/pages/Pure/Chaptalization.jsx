@@ -1,7 +1,32 @@
 import { useState, useEffect } from "react"
 import Input from "../../components/Input"
+import Accordion from "../../components/Accordion"
+import { sanityClient } from "../../../client"
+
 
 export default function Chaptalization() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "chaptalizasyon"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
+
   const [initialSugarContent, setInitialSugarContent] = useState(20)
   const [requiredSugarContent, setRequiredSugarContent] = useState(23)
   const [wineVolume, setWineVolume] = useState(30)
@@ -34,7 +59,9 @@ export default function Chaptalization() {
         <div className="calc-icon">
           <img src="/icons/grape.png" alt="" />
         </div>
-        <h1 className="calc-title">Şaptalizasyon Hesaplayıcı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -78,6 +105,14 @@ export default function Chaptalization() {
           )}
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
+
+
     </div>
   )
 }

@@ -1,11 +1,35 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Toggle from "../../components/Toggle";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
+
 
 const densityStrongAlcohol = 0.789; // g/ml for 95% alcohol
 const densityTargetAlcohol = 0.998; // g/ml for 40% alcohol
 
 export default function AlcoholWater() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "alkol_karistirma"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+  
   const [strongAlcoholStrength, setStrongAlcoholStrength] = useState(95); // % (об.)
   const [targetStrength, setTargetStrength] = useState(40); // % (об.)
   const [targetVolume, setTargetVolume] = useState(1000); // ml
@@ -55,9 +79,11 @@ export default function AlcoholWater() {
     <div className="calc-container">
       <div className="calc-header">
         <div className="calc-icon">
-          <img src="/icons/alkolfix.png" alt="Alkol Karıştırma" />
+          <img src="/icons/alchol3.png" alt="Alkol Karıştırma" />
         </div>
-        <h1 className="calc-title">Alkol ve su karışımı hesaplayıcısı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -126,6 +152,12 @@ export default function AlcoholWater() {
           </div>
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
     </div>
   );
 }

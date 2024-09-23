@@ -1,7 +1,32 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client"
+
 
 export default function LiquidRemaining() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "kupteki_sivi"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
+
   const [cubeDiameter, setCubeDiameter] = useState(36);
   const [heightToCoverTEN, setHeightToCoverTEN] = useState(8);
   const [liquidAlcoholContent, setLiquidAlcoholContent] = useState(10);
@@ -30,7 +55,9 @@ export default function LiquidRemaining() {
         <div className="calc-icon">
           <img src="/icons/liquid.png" alt="" />
         </div>
-        <h1 className="calc-title">Isıtma Elemanı Tarafından Buharlaştırıldıktan Sonra Küpte Kalan Sıvı Hesaplayıcı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -70,6 +97,13 @@ export default function LiquidRemaining() {
           )}
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
+
     </div>
   );
 }

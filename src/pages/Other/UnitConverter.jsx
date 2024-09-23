@@ -1,7 +1,31 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
 
 export default function UnitConverter() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "birim"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
+
   const [conversionType, setConversionType] = useState("brixToSpecificGravity");
   const [volume, setVolume] = useState(1000); // Alkol hacmi, ml
   const [strength, setStrength] = useState(95); // Alkol oranı, %(v/v)
@@ -70,7 +94,12 @@ export default function UnitConverter() {
   return (
     <div className="calc-container">
       <div className="calc-header">
-        <h1 className="calc-title">Alkol Birim Dönüştürücü</h1>
+        <div className="calc-icon">
+          <img src="/icons/unit.png" alt="" />
+        </div>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -212,6 +241,12 @@ export default function UnitConverter() {
           )}
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
     </div>
   );
 }

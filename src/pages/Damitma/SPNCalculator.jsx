@@ -1,7 +1,31 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
+
 
 export default function SPNCalculator() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "spn"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
   const [height, setHeight] = useState(1000);
   const [innerDiameter, setInnerDiameter] = useState(72);
   const [bottomRingHeight, setBottomRingHeight] = useState(100);
@@ -70,7 +94,9 @@ export default function SPNCalculator() {
         <div className="calc-icon">
           <img src="/icons/nozzle.png" alt="" />
         </div>
-        <h1 className="calc-title">SPN Nozul Hacmi Hesaplayıcısı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -142,6 +168,12 @@ export default function SPNCalculator() {
           </div>
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
     </div>
   );
 }

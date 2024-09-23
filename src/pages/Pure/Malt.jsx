@@ -1,7 +1,32 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
+import Accordion from "../../components/Accordion";
+import { sanityClient } from "../../../client";
+
 
 export default function Malt() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "wort"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, []);
+
+
   const [wortVolume, setWortVolume] = useState(30);
   const [requiredWortDensity, setRequiredWortDensity] = useState(10);
   const [maltExtractivity, setMaltExtractivity] = useState(80);
@@ -27,7 +52,9 @@ export default function Malt() {
         <div className="calc-icon">
           <img src="/icons/malt.png" alt="" />
         </div>
-        <h1 className="calc-title">Şıra İçin Malt Hesaplayıcı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
@@ -63,6 +90,13 @@ export default function Malt() {
           )}
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
+
     </div>
   );
 }

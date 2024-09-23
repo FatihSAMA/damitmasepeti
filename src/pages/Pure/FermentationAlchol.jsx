@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react";
-import Input from "../../components/Input";
+import { useState, useEffect } from "react"
+import Input from "../../components/Input"
+import Accordion from "../../components/Accordion"
+import { sanityClient } from "../../../client"
+
 
 const sugarTable = {
   0: -0.25,
@@ -80,6 +83,27 @@ const interpolate = (x, table) => {
 };
 
 export default function FermentationAlchol() {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      
+      try{
+        const query = `*[_type == "calculations" && id == "ac3"]`
+        const result = await sanityClient.fetch(query)
+        setData(result[0])
+      }
+      catch(err){
+        console.log("Veri çekilirken hata meydana geldi!", err)
+      }
+
+    }
+
+    fetchData()
+
+  }, [])
+
   const [initialSugar, setInitialSugar] = useState(25);
   const [finalSugar, setFinalSugar] = useState(3);
   const [result, setResult] = useState(null);
@@ -97,7 +121,9 @@ export default function FermentationAlchol() {
         <div className="calc-icon">
           <img src="/icons/fermentation.png" alt="" />
         </div>
-        <h1 className="calc-title">AC-3 Şeker Ölçeri Alkol Hesaplayıcı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
       <div className="calc-bottom">
         <div className="calc-inputs">
@@ -125,6 +151,13 @@ export default function FermentationAlchol() {
           )}
         </div>
       </div>
+
+      {data?.accordions?.length > 0 && (
+        data.accordions.map((accordion, index) => (
+          <Accordion title={accordion.title} content={accordion.content} key={index} />
+        ))
+      )}
+
     </div>
   );
 }
