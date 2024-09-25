@@ -4,7 +4,7 @@ import Accordion from "../../components/Accordion";
 import { sanityClient } from "../../../client";
 
 
-export default function Anason() {
+export default function AlcholDilution() {
 
   const [data, setData] = useState([])
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function Anason() {
     const fetchData = async () => {
       
       try{
-        const query = `*[_type == "calculations" && id == "anason"]`
+        const query = `*[_type == "calculations" && id == "alkol_seyreltme"]`
         const result = await sanityClient.fetch(query)
         setData(result[0])
       }
@@ -32,7 +32,6 @@ export default function Anason() {
 
   const [addedWaterVolume, setAddedWaterVolume] = useState(0); // İlave edilecek su miktarı (ml)
   const [totalVolume, setTotalVolume] = useState(0); // Toplam Hacim (ml)
-  const [addedAniseVolume, setAddedAniseVolume] = useState(0); // İlave Edilecek Anason (ml)
 
   useEffect(() => {
     calculate();
@@ -47,17 +46,13 @@ export default function Anason() {
     const total = alcoholVolume + waterToAdd;
     setTotalVolume(total.toFixed(2));
 
-    // İlave edilecek anason: Alkol Miktarı * 0.0025
-    // const aniseToAdd = alcoholVolume * 0.0025;
-    const aniseToAdd = (((alcoholVolume * alcoholPercentage) / 45) * 1.172) / 1000
-    setAddedAniseVolume(aniseToAdd.toFixed(2));
   };
 
   return (
     <div className="calc-container">
       <div className="calc-header">
       <div className="calc-icon">
-          <img src="/icons/anise.png" alt="" />
+          <img src="/icons/alchol2.png" alt="" />
         </div>
         <h1 className="calc-title">
           {data?.title}
@@ -80,10 +75,6 @@ export default function Anason() {
             <div className="flex justify-between w-full pt-2">
               <span>Toplam Hacim:</span>
               <span><b>{totalVolume}</b> ml</span>
-            </div>
-            <div className="flex justify-between w-full pt-2">
-              <span>İlave edilecek anason:</span>
-              <span><b>{addedAniseVolume}</b> ml</span>
             </div>
           </div>
         </div>

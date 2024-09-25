@@ -135,18 +135,20 @@ export default function LiquidTimer() {
 
             <div className="flex justify-between w-full pt-2">
               <span>Tüm Hacim İçin Geçen Süre:</span>
-              <span><b>{Math.round(totalTime / 60).toString().padStart(2, '0')}:{Math.round(totalTime % 60).toString().padStart(2, '0')}</b> saat</span>
+              <span><b>{Math.floor(totalTime / 60).toString().padStart(2, '0')}:{Math.round(totalTime % 60).toString().padStart(2, '0')}</b> saat</span>
             </div>
 
           </div>
         </div>
       </div>
 
-      {data?.accordions?.length > 0 && (
-        data.accordions.map((accordion, index) => (
-          <Accordion title={accordion.title} content={accordion.content} key={index} />
-        ))
-      )}
+      <div className="accordions">
+        {data?.accordions?.length > 0 && (
+          data.accordions.map((accordion, index) => (
+            <Accordion title={accordion.title} content={accordion.content} key={index} />
+          ))
+        )}
+      </div>
     </div>
   );
 }

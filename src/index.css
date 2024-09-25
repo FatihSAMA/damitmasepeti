@@ -66,6 +66,10 @@ input[type=number] {
       @apply md:flex-1 text-lg md:h-full text-center px-6 py-8 rounded-lg border-secondary/50 border w-full
     }
 
+    .accordions{
+      @apply flex flex-col gap-2.5
+    }
+
     /* Calculator Page End */
 
 }

@@ -122,11 +122,13 @@ export default function Distillation() {
       </div>
 
       
-      {data?.accordions?.length > 0 && (
-        data.accordions.map((accordion, index) => (
-          <Accordion title={accordion.title} content={accordion.content} key={index} />
-        ))
-      )}
+      <div className="accordions">
+        {data?.accordions?.length > 0 && (
+          data.accordions.map((accordion, index) => (
+            <Accordion title={accordion.title} content={accordion.content} key={index} />
+          ))
+        )}
+      </div>
     </div>
   );
 }

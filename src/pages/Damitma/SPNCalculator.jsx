@@ -84,7 +84,7 @@ export default function SPNCalculator() {
     setWeight(W);
 
     const C = weightTable[packingType].height;
-    const T = height / (C * 10);
+    const T = (height - bottomRingHeight - topRingHeight) / (C * 10);
     setTheoreticalPlates(T);
   }, [height, innerDiameter, bottomRingHeight, topRingHeight, packingType]);
 
@@ -169,11 +169,13 @@ export default function SPNCalculator() {
         </div>
       </div>
 
-      {data?.accordions?.length > 0 && (
-        data.accordions.map((accordion, index) => (
-          <Accordion title={accordion.title} content={accordion.content} key={index} />
-        ))
-      )}
+      <div className="accordions">
+        {data?.accordions?.length > 0 && (
+          data.accordions.map((accordion, index) => (
+            <Accordion title={accordion.title} content={accordion.content} key={index} />
+          ))
+        )}
+      </div>
     </div>
   );
 }

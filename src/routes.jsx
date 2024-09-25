@@ -31,6 +31,7 @@ import MutlakAlkol from "./pages/Other/MutlakAlkol";
 import Anason from "./pages/Other/Anason";
 import AS3 from "./pages/Pure/AS3";
 import SecondDistillation from "./pages/Damitma/SecondDistillation";
+import AlcholDilution from "./pages/Seyreltme/AlcholDilution";
 
 
 
@@ -149,6 +150,10 @@ const router = createBrowserRouter([{
                     path: "26",
                     element: <AlcoholMixing />
                 },
+                {
+                    path: "32",
+                    element: <AlcholDilution />
+                },
 
 
                 {
@@ -167,6 +172,6 @@ const router = createBrowserRouter([{
             ]
         }
     ]
-}])
+}]);
 
-export default router
+export default router;

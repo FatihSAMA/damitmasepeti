@@ -114,7 +114,7 @@ export default function BoilingTemperatureCalculator() {
     <div className="calc-container">
       <div className="calc-header">
         <div className="calc-icon">
-          <img src="/icons/boiling-point.png" alt="" />
+          <img src="/icons/boiling.png" alt="" />
         </div>
         <h1 className="calc-title">Kaynama Sıcaklığı Hesaplayıcı</h1>
       </div>
@@ -147,11 +147,13 @@ export default function BoilingTemperatureCalculator() {
         </div>
       </div>
 
-      {fetchedData?.accordions?.length > 0 && (
-        fetchedData.accordions.map((accordion, index) => (
-          <Accordion title={accordion.title} content={accordion.content} key={index} />
-        ))
-      )}
+      <div className="accordions">
+        {fetchedData?.accordions?.length > 0 && (
+          fetchedData.accordions.map((accordion, index) => (
+            <Accordion title={accordion.title} content={accordion.content} key={index} />
+          ))
+        )}
+      </div>
 
     </div>
   );

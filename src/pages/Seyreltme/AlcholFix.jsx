@@ -211,11 +211,13 @@ export default function AlcholFix(){
                 </div>
             </div>
 
-            {data?.accordions?.length > 0 && (
+            <div className="accordions">
+                {data?.accordions?.length > 0 && (
                 data.accordions.map((accordion, index) => (
-                <Accordion title={accordion.title} content={accordion.content} key={index} />
+                    <Accordion title={accordion.title} content={accordion.content} key={index} />
                 ))
-            )}
+                )}
+            </div>
         </div>
     )
 }

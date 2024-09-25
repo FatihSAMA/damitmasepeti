@@ -193,11 +193,10 @@ const getCalculators = async () => {
                     link: "/calc/24"
                 },
                 {
-                    // hesap yok
                     title: await findName("alkol_seyreltme"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
                     icon: "/icons/alchol2.png",
-                    link: "#"
+                    link: "/calc/32"
                 },
                 {
                     // bazıları hatalı
