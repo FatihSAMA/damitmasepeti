@@ -38,12 +38,10 @@ const getCalculators = async () => {
                     link: "#"
                 },
                 {
-                    // sorulacak
                     title: await findName("as3"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
                     icon: "/icons/as3.png",
-                    // link: "/calc/30"
-                    link: "#"
+                    link: "/calc/30"
                 },
                 {
                     title: await findName("ac3"),
