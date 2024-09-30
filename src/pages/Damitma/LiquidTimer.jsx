@@ -53,9 +53,9 @@ export default function LiquidTimer() {
     const S = seconds;
 
     // Hesaplamalar
-    const V1 = (3600 * N / S) / totalVolume; // L/s cinsinden
     const V2 = (N / S) / 0.025; // Alkollü sıvı için
     const V3 = (N / S) * 60; // mL/dk cinsinden
+    const V1 = V3 * 60; // L/s cinsinden
     const V4 = (N / S) / 0.05; // Su için
     const M = totalVolume / V3; // Tüm hacim için geçen süre
 

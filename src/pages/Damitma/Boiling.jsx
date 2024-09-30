@@ -116,7 +116,9 @@ export default function BoilingTemperatureCalculator() {
         <div className="calc-icon">
           <img src="/icons/boiling.png" alt="" />
         </div>
-        <h1 className="calc-title">Kaynama Sıcaklığı Hesaplayıcı</h1>
+        <h1 className="calc-title">
+          {data?.title}
+        </h1>
       </div>
 
       <div className="calc-bottom">
