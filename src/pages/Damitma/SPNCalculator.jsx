@@ -66,7 +66,7 @@ export default function SPNCalculator() {
         height: 5
       },
       "3x3 bakır 0,25 mm": {
-        weight: 1.5,
+        weight: 1.4,
         height: 3
       },
       "4x4 bakır 0,3 mm": {
@@ -92,7 +92,7 @@ export default function SPNCalculator() {
     <div className="calc-container">
       <div className="calc-header">
         <div className="calc-icon">
-          <img src="/icons/nozzle.png" alt="" />
+          <img src="/icons/spn.png" alt="" />
         </div>
         <h1 className="calc-title">
           {data?.title}
@@ -102,25 +102,25 @@ export default function SPNCalculator() {
       <div className="calc-bottom">
         <div className="calc-inputs">
           <Input
-            title="Sütun Yüksekliği"
+            title="Kolon Yüksekliği"
             unit="mm"
             value={height}
             setter={setHeight}
           />
           <Input
-            title="Çekmecenin İç Çapı"
+            title="Kolon İç Çapı"
             unit="mm"
             value={innerDiameter}
             setter={setInnerDiameter}
           />
           <Input
-            title="Alt Tapanın Yüksekliği"
+            title="Alt Tampon Yüksekliği"
             unit="mm"
             value={bottomRingHeight}
             setter={setBottomRingHeight}
           />
           <Input
-            title="Üst Tapanın Yüksekliği"
+            title="Üst Tampon Yüksekliği"
             unit="mm"
             value={topRingHeight}
             setter={setTopRingHeight}
@@ -155,11 +155,11 @@ export default function SPNCalculator() {
           <div className="divide-y space-y-2">
             <div className="flex justify-between w-full pt-2">
               <span>SPN Hacmi:</span>
-              <span><b>{volume.toFixed(3)}</b> litre</span>
+              <span><b>{volume.toFixed(3)}</b> ml</span>
             </div>
             <div className="flex justify-between w-full pt-2">
               <span>SPN Ağırlığı:</span>
-              <span><b>{weight.toFixed(3)}</b> kilogram</span>
+              <span><b>{weight.toFixed(3)}</b> gr</span>
             </div>
             <div className="flex justify-between w-full pt-2">
               <span>Teorik Plaka Sayısı:</span>

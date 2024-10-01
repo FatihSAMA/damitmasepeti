@@ -8,7 +8,7 @@ import getCalculators from "../constants/calculators";
 
 export default function MainLayout(){
 
-    const { calculations, setCalculations } = useContext(CalculationContext)
+    const { setCalculations } = useContext(CalculationContext)
 
     const [loading, setLoading] = useState(true)
         

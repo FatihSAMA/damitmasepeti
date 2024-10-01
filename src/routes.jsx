@@ -21,7 +21,6 @@ import SPNCalculator from "./pages/Damitma/SPNCalculator";
 // import LoadUnderStage from "./pages/Damitma/LoadUnderStage";
 import Reflu from "./pages/Damitma/Reflu";
 import Distillation from "./pages/Damitma/Distillation";
-import HeadsSelection from "./pages/Pure/HeadsSelection";
 import LiquidTimer from "./pages/Damitma/LiquidTimer";
 import AlcoholDensity from "./pages/Seyreltme/AlcholDensity";
 import AlcoholWater from "./pages/Seyreltme/AlcholWater";
@@ -32,6 +31,7 @@ import Anason from "./pages/Other/Anason";
 import AS3 from "./pages/Pure/AS3";
 import SecondDistillation from "./pages/Damitma/SecondDistillation";
 import AlcholDilution from "./pages/Seyreltme/AlcholDilution";
+import HedefSecim from "./pages/Damitma/HedefSecim";
 
 
 
@@ -121,7 +121,7 @@ const router = createBrowserRouter([{
                 },
                 {
                     path: "17",
-                    element: <HeadsSelection /> 
+                    element: <HedefSecim /> 
                 },
                 {
                     path: "18",
@@ -131,6 +131,10 @@ const router = createBrowserRouter([{
                     path: "31",
                     element: <SecondDistillation />
                 },
+                // {
+                //     path: "33",
+                //     element: <HedefSecim />
+                // },
 
 
 

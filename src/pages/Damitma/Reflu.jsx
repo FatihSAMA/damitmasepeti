@@ -102,7 +102,7 @@ export default function RefluxRatioCalculator() {
         <div className="calc-result">
           <div className="divide-y space-y-2">
             <div className="flex justify-between w-full pt-2">
-              <span>Reflüks Oranı:</span>
+              <span>Geri Akış Oranı:</span>
               <span><b>{refluxRatio}</b></span>
             </div>
           </div>

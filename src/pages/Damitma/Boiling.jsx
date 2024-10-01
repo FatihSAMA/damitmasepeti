@@ -117,7 +117,7 @@ export default function BoilingTemperatureCalculator() {
           <img src="/icons/boiling.png" alt="" />
         </div>
         <h1 className="calc-title">
-          {data?.title}
+          {fetchedData?.title}
         </h1>
       </div>
 

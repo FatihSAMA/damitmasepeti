@@ -122,17 +122,17 @@ export default function Sugar(){
           
           {/* Hesaplama Türü */}
           <div className="w-full">
-            <label htmlFor="type" className="label">Hesaplama Türü</label>
+            <label htmlFor="type" className="label">Hesaplama Yöntemi</label>
             <select id="type" className="input py-1.5 px-2" value={calculationType} onChange={handleCalculationTypeChange}>
-              <option value="hydraulicModule">Hidrolik Modüle Göre</option>
+              <option value="hydraulicModule">Hidromodüle Göre</option>
               <option value="waterVolume">Su Hacmine Göre</option>
-              <option value="pureVolume">Püre Hacmine Göre</option>
+              <option value="pureVolume">Mayşe Hacmine Göre</option>
             </select>
           </div>
 
           {calculationType === "hydraulicModule" && (
             <Input
-              title="Hidrolik Modül"
+              title="Hidromodül"
               unit="1:"
               value={hydraulicModule}
               setter={setHydraulicModule}
@@ -191,32 +191,32 @@ export default function Sugar(){
                   <div className="divide-y space-y-2">
                     <div className="flex justify-between w-full pt-2">
                       <span>Gerekli Su Hacmi :</span>
-                      <span><b>{result?.VW.toFixed(3)}</b> litre</span>
+                      <span><b>{result?.VW.toFixed(3)}</b> ml</span>
                     </div>                
                     
                     <div className="flex justify-between w-full pt-2">
-                      <span>Toplam Şıra Hacmi :</span>
-                      <span><b>{result?.VS.toFixed(3)}</b> litre</span>
+                      <span>Toplam Mayşe Hacmi :</span>
+                      <span><b>{result?.VS.toFixed(3)}</b> ml</span>
                     </div>
                     
                     <div className="flex justify-between w-full pt-2">
-                      <span>Şıranın Şeker İçeriği :</span>
+                      <span>Mayşenin Şeker İçeriği :</span>
                       <span>% <b>{result?.SS.toFixed(2)}</b></span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
-                      <span>Pürenin Alkol İçeriği :</span>
+                      <span>Mayşenin Alkol İçeriği :</span>
                       <span>% <b>{result?.SB.toFixed(2)}</b></span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
                       <span>Mutlak Alkol Hacmi :</span>
-                      <span><b>{result?.VAS.toFixed(3)}</b> litre</span>
+                      <span><b>{result?.VAS.toFixed(3)}</b> ml</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
-                      <span>Hacim %40 damıtık :</span>
-                      <span><b>{result?.V40.toFixed(3)}</b> litre</span>
+                      <span>Damıtık %40 Hacim :</span>
+                      <span><b>{result?.V40.toFixed(3)}</b> ml</span>
                     </div>
 
                   </div>
@@ -311,7 +311,7 @@ export default function Sugar(){
                   </div>
 
                   <div className="flex justify-between w-full pt-2">
-                    <span>Sodyum klorit :</span>
+                    <span>Sodyum klorür :</span>
                     <span><b>{result.sodyum.toFixed(2)}</b> gr</span>
                   </div>
 
@@ -332,10 +332,6 @@ export default function Sugar(){
                 </div>
               </>
             )}
-
-
-
-
         </div>
       
       </div>

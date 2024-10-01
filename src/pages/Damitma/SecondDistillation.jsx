@@ -79,19 +79,19 @@ export default function SecondDistillation(){
           <div className="calc-inputs">
 
             <Input
-              title="Ham Alkol Hacmi"
-              unit="l"
+              title="Suma Alkol Hacmi"
+              unit="L"
               value={alcholVolume}
               setter={setAlcholVolume}
             />
             <Input
-              title="Ham Alkolün Alkol İçeriği"
+              title="Suma Alkol İçeriği"
               unit="%"
               value={alcholPercent}
               setter={setAlcholPercent}
             />
             <Input
-              title="Çıkış Alkol İçeriği"
+              title="Gelen Alkol İçeriği"
               unit="%"
               value={outAlchol}
               setter={setOutAlchol}
@@ -126,27 +126,27 @@ export default function SecondDistillation(){
               </div>
 
               <div className="flex justify-between w-full pt-2">
-                <span>Mutlak Alkol Hacmi:</span>
+                <span>Çöp :</span>
                 <span><b>{garbageVolume.toFixed(0)}</b> ml</span>
               </div>
 
               <div className="flex justify-between w-full pt-2">
-                <span>Mutlak Alkol Hacmi:</span>
+                <span>Baş :</span>
                 <span><b>{headVolume.toFixed(0)}</b> ml</span>
               </div>
 
               <div className="flex justify-between w-full pt-2">
-                <span>Mutlak Alkol Hacmi:</span>
+                <span>Göbek :</span>
                 <span><b>{stomachVolume.toFixed(0)}</b> ml</span>
               </div>
 
               <div className="flex justify-between w-full pt-2">
-                <span>Mutlak Alkol Hacmi:</span>
+                <span>Kuyruk :</span>
                 <span><b>{trailVolume.toFixed(0)}</b> ml</span>
               </div>
 
               <div className="flex justify-between w-full pt-2">
-                <span>Mutlak Alkol Hacmi:</span>
+                <span>Kazanda Kalan :</span>
                 <span><b>{remainingLiquid.toFixed(0)}</b> ml</span>
               </div>
             

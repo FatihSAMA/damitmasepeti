@@ -183,7 +183,7 @@ export default function AlcholFix(){
 
             <div className="calc-header">
                 <div className="calc-icon">
-                    <img src="/icons/alkolfix.png" alt="" />
+                    <img src="/icons/alcholfix.png" alt="" />
                 </div>
 
                 <h1 className="calc-title">
@@ -194,13 +194,13 @@ export default function AlcholFix(){
             <div className="calc-bottom">
                 <div className="calc-inputs">
                     <Input title="Alkol Sıcaklığı" unit="°C" value={temprature} setter={setTemprature} />
-                    <Input title="Alkol İçeriği" unit="%(hacim)" value={alcholVolume} setter={setAlcholVolume} />
+                    <Input title="Alkol Oranı" unit="%" value={alcholVolume} setter={setAlcholVolume} />
                 </div>
 
                 <div className="calc-result">
                     {!error ? (
                         <div className="flex justify-between w-full pt-2">
-                            <span>Gerçek Alkol İçeriği :</span>
+                            <span>Gerçek Alkol Oranı :</span>
                             <span><b>{result}</b> %</span>
                         </div>
                     ) : (

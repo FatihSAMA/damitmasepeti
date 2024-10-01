@@ -63,13 +63,13 @@ export default function LiquidRemaining() {
       <div className="calc-bottom">
         <div className="calc-inputs">
           <Input
-            title="Küp Çapı"
+            title="Kazan Çapı"
             unit="cm"
             value={cubeDiameter}
             setter={setCubeDiameter}
           />
           <Input
-            title="Isıtma elemanının seviyesine kadar olan yükseklik"
+            title="Isıtma Elemanının Üst Seviyesine Kadar Olan Yükseklik"
             unit="cm"
             value={heightToCoverTEN}
             setter={setHeightToCoverTEN}
@@ -87,11 +87,11 @@ export default function LiquidRemaining() {
             <div className="divide-y space-y-2">
               <div className="flex justify-between w-full pt-2">
                 <span>Damıtma Sonunda Kalan Sıvı Hacmi:</span>
-                <span><b>{remainingVolume}</b> l</span>
+                <span><b>{remainingVolume}</b> ml</span>
               </div>
               <div className="flex justify-between w-full pt-2">
-                <span>Küpe Eklenebilecek Minimum Sıvı Hacmi:</span>
-                <span><b>{minimumVolume}</b> l</span>
+                <span>Kazana Eklenebilecek Minimum Sıvı Hacmi:</span>
+                <span><b>{minimumVolume}</b> ml</span>
               </div>
             </div>
           )}

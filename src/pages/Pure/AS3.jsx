@@ -1711,7 +1711,7 @@ export default function AS3() {
     <div className="calc-container">
       <div className="calc-header">
         <div className="calc-icon">
-          <img src="/icons/sugar.png" alt="" />
+          <img src="/icons/areometre.png" alt="" />
         </div>
         <h1 className="calc-title">
           {data?.title}  

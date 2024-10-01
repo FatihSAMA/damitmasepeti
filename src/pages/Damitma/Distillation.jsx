@@ -71,13 +71,13 @@ export default function Distillation() {
       <div className="calc-bottom">
         <div className="calc-inputs">
           <Input
-            title="Bira Hacmi"
+            title="Mayşe Hacmi"
             unit="L"
             value={volume}
             setter={setVolume}
           />
           <Input
-            title="Biranın Alkol Oranı"
+            title="Mayşenin Alkol Oranı"
             unit="%"
             value={alcoholStrength}
             setter={setAlcoholStrength}
@@ -111,11 +111,11 @@ export default function Distillation() {
           <div className="divide-y space-y-2">
             <div className="flex justify-between w-full pt-2">
               <span>Distilat Hacmi:</span>
-              <span><b>{distillateVolume.toFixed(3)}</b> L</span>
+              <span><b>{distillateVolume.toFixed(3)}</b> ml</span>
             </div>
             <div className="flex justify-between w-full pt-2">
               <span>Kalan Hacim:</span>
-              <span><b>{remainingVolume.toFixed(3)}</b> L</span>
+              <span><b>{remainingVolume.toFixed(3)}</b> ml</span>
             </div>
           </div>
         </div>

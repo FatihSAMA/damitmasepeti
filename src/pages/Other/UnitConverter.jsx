@@ -151,7 +151,7 @@ export default function UnitConverter() {
           {conversionType === "brixToSpecificGravity" && (
             <>
               <Input
-                title="Şeker içeriği"
+                title="Şeker İçeriği"
                 unit="°Bx"
                 value={sugarContent}
                 setter={setSugarContent}
@@ -162,7 +162,7 @@ export default function UnitConverter() {
           {conversionType === "specificGravityToBrix" && (
             <>
               <Input
-                title="Özgül ağırlık"
+                title="Özgül Ağırlık"
                 unit="g/ml"
                 value={specificGravity}
                 setter={setSpecificGravity}
@@ -217,12 +217,12 @@ export default function UnitConverter() {
           {conversionType === "brixToSpecificGravity" && (
             <div className="divide-y space-y-2">
               <div className="flex justify-between w-full pt-2">
-                <span>Özgül ağırlık:</span>
+                <span>Özgül Ağırlık:</span>
                 <span><b>{specificGravity.toFixed(4)}</b> g/ml</span>
               </div>
               <div className="flex justify-between w-full pt-2">
-                <span>Potansiyel alkol verimi:</span>
-                <span><b>{potentialYield.toFixed(2)}</b></span>
+                <span>Potansiyel Alkol Verimi :</span>
+                <span><b>{potentialYield.toFixed(2)}</b> %</span>
               </div>
             </div>
           )}
@@ -230,7 +230,7 @@ export default function UnitConverter() {
           {conversionType === "specificGravityToBrix" && (
             <div className="divide-y space-y-2">
               <div className="flex justify-between w-full pt-2">
-                <span>Şeker içeriği:</span>
+                <span>Şeker İçeriği:</span>
                 <span><b>{sugarContent.toFixed(2)}</b> °Bx</span>
               </div>
               <div className="flex justify-between w-full pt-2">

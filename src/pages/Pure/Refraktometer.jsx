@@ -60,7 +60,7 @@ export default function Refractometer() {
     <div className="calc-container">
       <div className="calc-header">
         <div className="calc-icon">
-          <img src="/icons/refractometer.png" alt="" />
+          <img src="/icons/hidrometre.png" alt="" />
         </div>
         <h1 className="calc-title">
           {data?.title}
@@ -94,7 +94,7 @@ export default function Refractometer() {
                 )}
                 {!error && (
                   <>
-                    <span>Pürenin Alkol İçeriği :</span>
+                    <span>Mayşenin Alkol İçeriği :</span>
                     <span>% <b>{result.toFixed(2)}</b></span>
                   </>
                 )}

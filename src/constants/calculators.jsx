@@ -40,7 +40,7 @@ const getCalculators = async () => {
                 {
                     title: await findName("as3"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                    icon: "/icons/as3.png",
+                    icon: "/icons/areometre.png",
                     link: "/calc/30"
                 },
                 {
@@ -52,7 +52,7 @@ const getCalculators = async () => {
                 {
                     title: await findName("refaktormetre"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                    icon: "/icons/refractometer.png",
+                    icon: "/icons/hidrometre.png",
                     link: "/calc/4"
                 },
                 {
@@ -118,7 +118,7 @@ const getCalculators = async () => {
                 {
                     title: await findName("spn"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                    icon: "/icons/nozzle.png",
+                    icon: "/icons/spn.png",
                     link: "/calc/13"
                 },
                 // {
@@ -180,7 +180,7 @@ const getCalculators = async () => {
                 {
                     title: await findName("alkol_sayac"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                    icon: "/icons/alkolfix.png",
+                    icon: "/icons/alcholfix.png",
                     link: "/calc/23"
                 },
                 {

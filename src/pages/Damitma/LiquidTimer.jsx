@@ -4,7 +4,7 @@ import Accordion from "../../components/Accordion";
 import { sanityClient } from "../../../client";
 
 
-export default function LiquidTimer() {
+export default function   LiquidTimer() {
 
   const [data, setData] = useState([])
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function LiquidTimer() {
     // Hesaplamalar
     const V2 = (N / S) / 0.025; // Alkollü sıvı için
     const V3 = (N / S) * 60; // mL/dk cinsinden
-    const V1 = V3 * 60; // L/s cinsinden
+    const V1 = (V3 * 60) / 1000; // L/s cinsinden
     const V4 = (N / S) / 0.05; // Su için
     const M = totalVolume / V3; // Tüm hacim için geçen süre
 
@@ -88,13 +88,13 @@ export default function LiquidTimer() {
         <div className="calc-inputs">
           <Input
             title="Toplanan Hacim"
-            unit="mL"
+            unit="ml"
             value={collectedVolume}
             setter={setCollectedVolume}
           />
           <Input
             title="Tüm Hacim"
-            unit="mL"
+            unit="ml"
             value={totalVolume}
             setter={setTotalVolume}
           />
@@ -117,21 +117,21 @@ export default function LiquidTimer() {
                 </span>
             </div>
             <div className="flex justify-between w-full pt-2">
-              <span>Akış Hızı (L/s):</span>
-              <span><b>{flowRateLh.toFixed(3)}</b></span>
+              <span>Akış Hızı (ml/s):</span>
+              <span><b>{flowRateLh.toFixed(3)}</b> ml</span>
             </div>
             <div className="flex justify-between w-full pt-2">
-              <span>Akış Hızı (mL/dk):</span>
-              <span><b>{flowRateMlMin.toFixed(2)}</b></span>
+              <span>Akış Hızı (ml/dk):</span>
+              <span><b>{flowRateMlMin.toFixed(2)}</b> ml</span>
             </div>
             <div className="flex justify-between w-full pt-2">
-              <span>Alkollü Sıvı Akış Hızı:</span>
-              <span><b>{flowRateAlcohol.toFixed(1)}</b> damla/s</span>
+              <span>Alkollü Sıvı Akış Hızı (damla/sn):</span>
+              <span><b>{flowRateAlcohol.toFixed(1)}</b></span>
             </div>
-            <div className="flex justify-between w-full pt-2">
+            {/* <div className="flex justify-between w-full pt-2">
               <span>Su Akış Hızı:</span>
               <span><b>{flowRateWater.toFixed(1)}</b> damla/s</span>
-            </div>
+            </div> */}
 
             <div className="flex justify-between w-full pt-2">
               <span>Tüm Hacim İçin Geçen Süre:</span>
