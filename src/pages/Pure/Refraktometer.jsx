@@ -95,7 +95,7 @@ export default function Refractometer() {
                 {!error && (
                   <>
                     <span>Mayşenin Alkol İçeriği :</span>
-                    <span>% <b>{result.toFixed(2)}</b></span>
+                    <span><b>{result.toFixed(2)}</b> %</span>
                   </>
                 )}
               </div>

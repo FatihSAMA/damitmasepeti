@@ -201,12 +201,12 @@ export default function Sugar(){
                     
                     <div className="flex justify-between w-full pt-2">
                       <span>Mayşenin Şeker İçeriği :</span>
-                      <span>% <b>{result?.SS.toFixed(2)}</b></span>
+                      <span><b>{result?.SS.toFixed(2)}</b> % </span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
                       <span>Mayşenin Alkol İçeriği :</span>
-                      <span>% <b>{result?.SB.toFixed(2)}</b></span>
+                      <span><b>{result?.SB.toFixed(2)}</b> % </span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
@@ -231,27 +231,27 @@ export default function Sugar(){
                     
                     <div className="flex justify-between w-full pt-2">
                       <span>Toplam Şıra Hacmi :</span>
-                      <span><b>{result?.VS.toFixed(3)}</b> litre</span>
+                      <span><b>{result?.VS.toFixed(3)}</b> ml</span>
                     </div>
                     
                     <div className="flex justify-between w-full pt-2">
                       <span>Şıranın Şeker İçeriği :</span>
-                      <span>% <b>{result?.SS.toFixed(2)}</b></span>
+                      <span><b>{result?.SS.toFixed(2)}</b> %</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
                       <span>Pürenin Alkol İçeriği :</span>
-                      <span>% <b>{result?.SB.toFixed(2)}</b></span>
+                      <span><b>{result?.SB.toFixed(2)}</b> %</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
                       <span>Mutlak Alkol Hacmi :</span>
-                      <span><b>{result?.VAS.toFixed(3)}</b> litre</span>
+                      <span><b>{result?.VAS.toFixed(3)}</b> ml</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
                       <span>Hacim %40 damıtık :</span>
-                      <span><b>{result?.V40.toFixed(3)}</b> litre</span>
+                      <span><b>{result?.V40.toFixed(3)}</b> ml</span>
                     </div>
 
                   </div>
@@ -261,7 +261,7 @@ export default function Sugar(){
                   <div className="divide-y space-y-2">
                     <div className="flex justify-between w-full pt-2">
                       <span>Gerekli Su Hacmi :</span>
-                      <span><b>{result?.VW.toFixed(3)}</b> litre</span>
+                      <span><b>{result?.VW.toFixed(3)}</b> ml</span>
                     </div>                
                     
                     <div className="flex justify-between w-full pt-2">
@@ -271,22 +271,22 @@ export default function Sugar(){
                     
                     <div className="flex justify-between w-full pt-2">
                       <span>Şıranın Şeker İçeriği :</span>
-                      <span>% <b>{result?.SS.toFixed(2)}</b></span>
+                      <span><b>{result?.SS.toFixed(2)}</b> %</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
                       <span>Pürenin Alkol İçeriği :</span>
-                      <span>% <b>{result?.SB.toFixed(2)}</b></span>
+                      <span><b>{result?.SB.toFixed(2)}</b> %</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
                       <span>Mutlak Alkol Hacmi :</span>
-                      <span><b>{result?.VAS.toFixed(3)}</b> litre</span>
+                      <span><b>{result?.VAS.toFixed(3)}</b> ml</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
                       <span>Hacim %40 damıtık :</span>
-                      <span><b>{result?.V40.toFixed(3)}</b> litre</span>
+                      <span><b>{result?.V40.toFixed(3)}</b> ml</span>
                     </div>
 
                   </div>

@@ -1733,16 +1733,19 @@ export default function AS3() {
           /> 
         </div>
         <div className="calc-result">   
-            <div className="result">
+            <div className="flex justify-between w-full pt-2">
               {error ? (
                 <p className="text-red-500">
                   {error}
                 </p>
               ) : (
-                <p>Gerçek Şeker Oranı: <b>{correction}</b>%</p>
+                <>
+                  <span>Gerçek Şeker Oranı :</span>
+                  <span><b>{correction}</b> %</span>
+                </>
                 )
               }
-            </div>
+            </div>  
         </div>
       </div>
 

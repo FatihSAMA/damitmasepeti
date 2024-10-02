@@ -86,8 +86,12 @@ export default function AcidCalculator(){
                 </div>
 
                 <div className="calc-result">
-                    {!error && ("Asit Kütlesi : "  + result + "g")}
-                    {error && result}
+                    <div className="flex justify-between w-full pt-2">
+                        {error ? result : <>
+                            <span>Asit Kütlesi :</span>
+                            <span><b>{result}</b> g</span>
+                        </>}
+                    </div>
                 </div>
             </div>
 

@@ -144,7 +144,7 @@ export default function FermentationAlchol() {
           {result !== null && (
             <div className="divide-y space-y-2">
               <div className="flex justify-between w-full pt-2">
-                <span>Pürenin Alkol İçeriği:</span>
+                <span>Mayşenin Alkol İçeriği:</span>
                 <span><b>{result.toFixed(2)}</b> %</span>
               </div>
             </div>

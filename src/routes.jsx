@@ -38,7 +38,7 @@ import HedefSecim from "./pages/Damitma/HedefSecim";
 const router = createBrowserRouter([{
     path : "/",
     element : <MainLayout />,
-    // errorElement: <NotFound />,
+    errorElement: <NotFound />,
     children : [
         {
             index : true,
