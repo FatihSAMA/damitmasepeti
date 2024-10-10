@@ -235,7 +235,7 @@ export default function UnitConverter() {
               </div>
               <div className="flex justify-between w-full pt-2">
                 <span>Potansiyel alkol verimi:</span>
-                <span><b>{potentialYield.toFixed(2)}</b></span>
+                <span><b>{potentialYield.toFixed(2)}</b> %</span>
               </div>
             </div>
           )}

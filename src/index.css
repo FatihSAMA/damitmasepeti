@@ -63,7 +63,7 @@ input[type=number] {
     }
 
     .calc-result{
-      @apply md:flex-1 text-sm md:h-full px-6 py-8 rounded-lg border-secondary/50 border w-full md:text-lg
+      @apply md:flex-1 text-base md:h-full px-6 py-8 rounded-lg border-secondary/50 border w-full md:text-lg
     }
 
     .accordions{

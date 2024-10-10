@@ -34,6 +34,8 @@ export default function RefluxRatioCalculator() {
   const [useHeatLoss, setUseHeatLoss] = useState(false); // Isı kaybı yüzdesi toggle
   const [refluxRatio, setRefluxRatio] = useState(0); // Reflüks oranı
 
+  const [resultColor, setResultColor] = useState("")
+
   useEffect(() => {
     const S = alcoholStrength / 100;
     const W = power;
@@ -42,7 +44,11 @@ export default function RefluxRatioCalculator() {
   
     const F0 = (((((1 - S) + (S / 0.789)) * (W / (((1 - S) * 2260) + (855 * S)))) * 60) * 10) / (V / 0.06) / 10;
     const F = F0 - (P * F0) / 100;
-  
+
+    if(F > 2.5 && F <= 3) setResultColor("text-blue-600")
+    else if(F > 3) setResultColor("text-green-500")
+    else setResultColor("text-red-600")
+
     setRefluxRatio(F.toFixed(1));
   }, [alcoholStrength, power, flowRate, useHeatLoss, heatLossPercentage]);
   
@@ -103,7 +109,7 @@ export default function RefluxRatioCalculator() {
           <div className="divide-y space-y-2">
             <div className="flex justify-between w-full pt-2">
               <span>Geri Akış Oranı:</span>
-              <span><b>{refluxRatio}</b></span>
+              <span className={resultColor}><b>{refluxRatio}</b></span>
             </div>
           </div>
         </div>

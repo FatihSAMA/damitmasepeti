@@ -25,18 +25,18 @@ const getCalculators = async () => {
                     icon: "/icons/sugar.png",
                     link: "/calc/2"
                 },
-                {
-                    title: await findName("tahil_puresi"),
-                    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                    icon: "/icons/grain.png",
-                    link: "#"
-                },
-                {
-                    title: await findName("meyve"),
-                    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                    icon: "/icons/fruit.png",
-                    link: "#"
-                },
+                // {
+                //     title: await findName("tahil_puresi"),
+                //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                //     icon: "/icons/grain.png",
+                //     link: "#"
+                // },
+                // {
+                //     title: await findName("meyve"),
+                //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                //     icon: "/icons/fruit.png",
+                //     link: "#"
+                // },
                 {
                     title: await findName("as3"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
@@ -135,11 +135,10 @@ const getCalculators = async () => {
                     link: "/calc/15"
                 },
                 {
-                    // hesap yok
                     title: await findName("kup_sivi_sicakligi"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
                     icon: "/icons/alcholtemp.png",
-                    link: "#"
+                    link: "/calc/34"
                 },
                 {
                     title: await findName("damitma"),
@@ -165,12 +164,12 @@ const getCalculators = async () => {
                     icon: "/icons/timer.png",
                     link: "/calc/18"
                 },
-                {
-                    title: await findName("hedef_kronometre"),
-                    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                    icon: "/icons/timer2.png",
-                    link: "#"
-                },
+                // {
+                //     title: await findName("hedef_kronometre"),
+                //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                //     icon: "/icons/timer2.png",
+                //     link: "#"
+                // },
             ]
         },
 
@@ -183,13 +182,13 @@ const getCalculators = async () => {
                     icon: "/icons/alcholfix.png",
                     link: "/calc/23"
                 },
-                {
-                    // hatalı
-                    title: await findName("alkol_kutle"),
-                    desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
-                    icon: "/icons/alchol5.png",
-                    link: "/calc/24"
-                },
+                // {
+                //     // hatalı
+                //     title: await findName("alkol_kutle"),
+                //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
+                //     icon: "/icons/alchol5.png",
+                //     link: "/calc/24"
+                // },
                 {
                     title: await findName("alkol_seyreltme"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
@@ -204,11 +203,10 @@ const getCalculators = async () => {
                     link: "/calc/25"
                 },
                 {
-                    // hesap yok
                     title: await findName("nihai_alkol"),
                     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque, cumque!",
                     icon: "/icons/alchol4.png",
-                    link: "#"
+                    link: "/calc/33"
                 },
                 {
                     // hatalı

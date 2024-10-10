@@ -74,15 +74,15 @@ export default function Anason() {
         <div className="calc-result">
           <div className="divide-y space-y-2">
             <div className="flex justify-between w-full pt-2">
-              <span>İlave edilecek su miktarı:</span>
+              <span>İlave Edilecek Su Miktarı :</span>
               <span><b>{addedWaterVolume}</b> ml</span>
             </div>
             <div className="flex justify-between w-full pt-2">
-              <span>Toplam Hacim:</span>
+              <span>Toplam Hacim :</span>
               <span><b>{totalVolume}</b> ml</span>
             </div>
             <div className="flex justify-between w-full pt-2">
-              <span>İlave edilecek anason:</span>
+              <span>İlave Edilecek Anason Yağı :</span>
               <span><b>{addedAniseVolume}</b> ml</span>
             </div>
           </div>

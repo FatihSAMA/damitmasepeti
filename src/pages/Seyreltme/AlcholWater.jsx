@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
 import Input from "../../components/Input";
-import Toggle from "../../components/Toggle";
 import Accordion from "../../components/Accordion";
 import { sanityClient } from "../../../client";
 
-
-const densityStrongAlcohol = 0.789; // g/ml for 95% alcohol
-const densityTargetAlcohol = 0.998; // g/ml for 40% alcohol
 
 export default function AlcoholWater() {
 
@@ -30,50 +26,44 @@ export default function AlcoholWater() {
 
   }, [])
   
-  const [strongAlcoholStrength, setStrongAlcoholStrength] = useState(95); // % (об.)
-  const [targetStrength, setTargetStrength] = useState(40); // % (об.)
-  const [targetVolume, setTargetVolume] = useState(1000); // ml
-  const [temperature, setTemperature] = useState(20); // °C
-  const [useTemperature, setUseTemperature] = useState(false); // Temperature toggle
-  const [strongAlcoholVolume, setStrongAlcoholVolume] = useState(0); // ml
-  const [waterVolume, setWaterVolume] = useState(0); // ml
-  const [strongAlcoholMass, setStrongAlcoholMass] = useState(0); // g
-  const [finalMass, setFinalMass] = useState(0); // g
-  const [absoluteAlcoholVolume, setAbsoluteAlcoholVolume] = useState(0); // ml
-  const [contraction, setContraction] = useState(0); // ml
+
+  const [currentAlchol, setCurrentAlchol] = useState(40);
+  const [wantedAlchol, setWantedAlchol] = useState(45);
+  const [volume, setVolume] = useState(4500);
+
+  const [currentVolume, setCurrentVolume] = useState();
+  const [waterVolume, setWaterVolume] = useState();
+  const [totalVolume, setTotalVolume] = useState();
+
+  const [error, setError] = useState(false);
 
   const calculateMixing = () => {
-    const S1 = parseFloat(strongAlcoholStrength);
-    const S2 = parseFloat(targetStrength);
-    const V2 = parseFloat(targetVolume);
 
-    // Güçlü alkol hacmi (ml)
-    const V1 = (V2 * S2) / S1;
+    const alchol = parseFloat(currentAlchol);
+    const wanted = parseFloat(wantedAlchol);
+    const vol = parseFloat(volume);
 
-    // Güçlü alkol kütlesi (g)
-    const M1 = V1 * densityStrongAlcohol;
+    if(wanted < alchol){
+      setError("İstenilen Alkol Oranı Mevcut Alkol Oranından Küçük Olmalı!");
+      return;
+    }
+    else setError(false)
 
-    // Gereken alkol kütlesi (g)
-    const M2 = V2 * densityTargetAlcohol;
+    const current = (vol * wanted) / alchol;
+    setCurrentVolume(current.toFixed(2));
 
-    // Su hacmi (ml)
-    const V = M2 - M1;
+    const water = volume - current;
+    setWaterVolume(water.toFixed(2));
 
-    // Kontraksiyon (ml)
-    const C = V1 + V - V2;
+    const total = current + water;
+    setTotalVolume(total.toFixed(2));
 
-    // Sonuçları güncelleme
-    setStrongAlcoholVolume(V1);
-    setWaterVolume(V);
-    setStrongAlcoholMass(M1);
-    setFinalMass(M2);
-    setAbsoluteAlcoholVolume(V2 * (S2 / 100));
-    setContraction(C);
+
   };
 
   useEffect(() => {
     calculateMixing();
-  }, [strongAlcoholStrength, targetStrength, targetVolume, temperature, useTemperature]);
+  }, [currentAlchol, wantedAlchol, volume]);
 
   return (
     <div className="calc-container">
@@ -89,66 +79,48 @@ export default function AlcoholWater() {
       <div className="calc-bottom">
         <div className="calc-inputs">
           <Input
-            title="Güçlü Alkol Oranı"
-            unit="% (об.)"
-            value={strongAlcoholStrength}
-            setter={setStrongAlcoholStrength}
+            title="Mevcut Alkol Oranı"
+            unit="%"
+            value={currentAlchol}
+            setter={setCurrentAlchol}
           />
           <Input
-            title="Gereken Alkol Oranı"
-            unit="% (об.)"
-            value={targetStrength}
-            setter={setTargetStrength}
+            title="İstenilen Alkol Oranı"
+            unit="%"
+            value={wantedAlchol}
+            setter={setWantedAlchol}
           />
           <Input
-            title="Gereken Hacim"
+            title="İstenilen Hacim"
             unit="ml"
-            value={targetVolume}
-            setter={setTargetVolume}
+            value={volume}
+            setter={setVolume}
           />
 
-          <div className="w-full">
-            <div className="flex gap-2.5 items-center text-sm mb-2">
-              <Toggle state={useTemperature} setState={setUseTemperature} />
-              <span>Alkol Sıcaklığı, <b>°C</b></span>
-            </div>
-            {useTemperature && (
-              <Input 
-                title=""
-                unit=""
-                value={temperature}
-                setter={setTemperature}
-              />
-            )}
-          </div>
         </div>
 
         <div className="calc-result">
           <div className="divide-y space-y-2">
-            <div className="flex justify-between w-full pt-2">
-              <span>Güçlü Alkol Hacmi:</span>
-              <span><b>{strongAlcoholVolume.toFixed(2)}</b> ml</span>
-            </div>
-            <div className="flex justify-between w-full pt-2">
-              <span>Sulandırma İçin Su Hacmi:</span>
-              <span><b>{waterVolume.toFixed(2)}</b> ml</span>
-            </div>
-            <div className="flex justify-between w-full pt-2">
-              <span>Güçlü Alkol Kütlesi:</span>
-              <span><b>{strongAlcoholMass.toFixed(2)}</b> g</span>
-            </div>
-            <div className="flex justify-between w-full pt-2">
-              <span>Karışım Sonrası Kütle:</span>
-              <span><b>{finalMass.toFixed(2)}</b> g</span>
-            </div>
-            <div className="flex justify-between w-full pt-2">
-              <span>Mutlak Alkol Hacmi:</span>
-              <span><b>{absoluteAlcoholVolume.toFixed(2)}</b> ml</span>
-            </div>
-            <div className="flex justify-between w-full pt-2">
-              <span>Kontraksiyon:</span>
-              <span><b>{contraction.toFixed(2)}</b> ml</span>
-            </div>
+            {error ? (
+              <span className="text-red-600">
+                {error}
+              </span>
+            ) : (
+              <>
+                <div className="flex justify-between w-full pt-2">
+                  <span>Mevcut Alkol Hacmi :</span>
+                  <span><b>{currentVolume}</b> ml</span>
+                </div>
+                <div className="flex justify-between w-full pt-2">
+                  <span>Seyreltme İçin Su Hacmi :</span>
+                  <span><b>{waterVolume}</b> ml</span>
+                </div>
+                <div className="flex justify-between w-full pt-2">
+                  <span>Toplam Hacim :</span>
+                  <span><b>{totalVolume}</b> ml</span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

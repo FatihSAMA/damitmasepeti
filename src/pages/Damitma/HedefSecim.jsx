@@ -37,7 +37,7 @@ export default function HedefSecim() {
 
   useEffect(() => {
     calculate();
-  }, [alcoholVolume, alcoholPercentage, targetPercentage]);
+  }, [alcoholVolume, alcoholPercentage, targetPercentage, comingAlchol]);
 
   const calculate = () => {
     
@@ -62,9 +62,9 @@ export default function HedefSecim() {
 
       <div className="calc-bottom">
         <div className="calc-inputs">
-          <Input title="Suma Alkol Hacmi" unit="ml" value={alcoholVolume} setter={setAlcoholVolume} />
+          <Input title="Suma Alkol Hacmi" unit="L" value={alcoholVolume} setter={setAlcoholVolume} />
           <Input title="Suma Alkol İçeriği" unit="%" value={alcoholPercentage} setter={setAlcoholPercentage} />
-          <Input title="Hedeflenen Oran" unit="%" value={targetPercentage} setter={setTargetPercentage} />
+          <Input title="Hedeflenen Pay" unit="%" value={targetPercentage} setter={setTargetPercentage} />
           <Input title="Gelen Alkol Oranı" unit="%" value={comingAlchol} setter={setComingAlchol} />
         </div>
 

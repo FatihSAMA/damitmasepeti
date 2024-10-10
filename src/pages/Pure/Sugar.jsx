@@ -142,7 +142,7 @@ export default function Sugar(){
           {calculationType === "waterVolume" && (
             <Input
               title="Su Hacmi"
-              unit="l"
+              unit="L"
               value={waterVolume}
               setter={setWaterVolume}
             />
@@ -150,8 +150,8 @@ export default function Sugar(){
 
           {calculationType === "pureVolume" && (
             <Input
-              title="Püre Hacmi"
-              unit="l"
+              title="Mayşe Hacmi"
+              unit="L"
               value={pureVolume}
               setter={setPureVolume}
             />
@@ -225,22 +225,22 @@ export default function Sugar(){
                 {calculationType === "waterVolume" && resultType === "waterVolume" && (
                   <div className="divide-y space-y-2">
                     <div className="flex justify-between w-full pt-2">
-                      <span>Hidrolik Modül :</span>
+                      <span>Hidromodül :</span>
                       <span><b>1 : {result?.G.toFixed(1)}</b></span>
                     </div>                
                     
                     <div className="flex justify-between w-full pt-2">
-                      <span>Toplam Şıra Hacmi :</span>
+                      <span>Toplam Mayşe Hacmi :</span>
                       <span><b>{result?.VS.toFixed(3)}</b> ml</span>
                     </div>
                     
                     <div className="flex justify-between w-full pt-2">
-                      <span>Şıranın Şeker İçeriği :</span>
+                      <span>Mayşenin Şeker İçeriği :</span>
                       <span><b>{result?.SS.toFixed(2)}</b> %</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
-                      <span>Pürenin Alkol İçeriği :</span>
+                      <span>Mayşenin Alkol İçeriği :</span>
                       <span><b>{result?.SB.toFixed(2)}</b> %</span>
                     </div>
 
@@ -265,17 +265,17 @@ export default function Sugar(){
                     </div>                
                     
                     <div className="flex justify-between w-full pt-2">
-                      <span>Hidrolik Modül :</span>
+                      <span>Hidromodül :</span>
                       <span><b>1 : {result?.G.toFixed(1)}</b></span>
                     </div>
                     
                     <div className="flex justify-between w-full pt-2">
-                      <span>Şıranın Şeker İçeriği :</span>
+                      <span>Mayşenin Şeker İçeriği :</span>
                       <span><b>{result?.SS.toFixed(2)}</b> %</span>
                     </div>
 
                     <div className="flex justify-between w-full pt-2">
-                      <span>Pürenin Alkol İçeriği :</span>
+                      <span>Mayşenin Alkol İçeriği :</span>
                       <span><b>{result?.SB.toFixed(2)}</b> %</span>
                     </div>
 

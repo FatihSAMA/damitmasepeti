@@ -32,6 +32,8 @@ import AS3 from "./pages/Pure/AS3";
 import SecondDistillation from "./pages/Damitma/SecondDistillation";
 import AlcholDilution from "./pages/Seyreltme/AlcholDilution";
 import HedefSecim from "./pages/Damitma/HedefSecim";
+import AbsoluteAlchol from "./pages/Seyreltme/AbsoluteAlchol";
+import AlcholCube from "./pages/Damitma/AlcholCube";
 
 
 
@@ -86,6 +88,7 @@ const router = createBrowserRouter([{
                     element: <AS3 />
                 },
 
+
                 // Damitma
                 {
                     path: "9",
@@ -131,11 +134,10 @@ const router = createBrowserRouter([{
                     path: "31",
                     element: <SecondDistillation />
                 },
-                // {
-                //     path: "33",
-                //     element: <HedefSecim />
-                // },
-
+                {
+                    path: "34",
+                    element: <AlcholCube />
+                },
 
 
                 {
@@ -148,7 +150,7 @@ const router = createBrowserRouter([{
                 },
                 {
                     path: "25",
-                    element: <AlcoholWater /> // bazı değerler tablodan çekildiği için yanlış
+                    element: <AlcoholWater />
                 },
                 {
                     path: "26",
@@ -157,6 +159,10 @@ const router = createBrowserRouter([{
                 {
                     path: "32",
                     element: <AlcholDilution />
+                },
+                {
+                    path: "33",
+                    element: <AbsoluteAlchol />
                 },
 
 
